@@ -139,7 +139,8 @@ button.menu img {
     bottom: 0;
     width: 250px;
     height: 100%;
-    background-color: #3367D6;
+    /*background-color: #3367D6;*/
+    background-color: #CF423A;
     color: #fefefe;
     -webkit-transform: translate(-250px, 0);
     transform: translate(-250px, 0);
@@ -165,7 +166,8 @@ button.menu img {
 
 .navdrawer-container h4 {
     background-color: white;
-    color: #3367D6;
+    /*color: #3367D6;*/
+    color: #CF423A;
 }
 
 .navdrawer-container ul {
