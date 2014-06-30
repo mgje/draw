@@ -148,6 +148,10 @@ button.menu img {
 
 }
 
+.black{
+    background-color: #000000;
+}
+
 .base, p, ul, ol {
     font-size: 19px;
 }
