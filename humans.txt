@@ -3,12 +3,14 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Martin Gugisberg -- Code -- @mgje
 
 # THANKS
 
-    <name>
+    The man that invented currywurst and beer
 
 # TECHNOLOGY COLOPHON
 
-    HTML5, CSS3
+    HTML5, CSS3, Raphaël, CoffeeScript, Github 
+
+- BOOM -
