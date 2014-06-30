@@ -152,6 +152,8 @@ button.menu img {
     background-color: #000000;
 }
 
+.pre-wrap {white-space: pre-wrap;}
+
 .base, p, ul, ol {
     font-size: 19px;
 }
