@@ -89,7 +89,6 @@
 
     //var ss = document.getElementById("SVGKurve").innerHTML;
     //document.getElementById("SVGSourceKurve").innerHTML=S(r.getById(2).node.outerHTML).escapeHTML().s;
-    update_Kurve_SVG();
 }
 //--------------- SVGKurve2 ----------------------------------
 function SVGKurve2(){
