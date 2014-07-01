@@ -98,16 +98,20 @@ function SVGKurve2(){
     // r.text(310, 20, "Drag the points to change the curves").attr({fill: "#fff", "font-size": 16});
     
 
-    function curve(x, y, ax, ay, bx, by, zx, zy, color) {
-        var path = [["M", x, y], ["C", ax, ay, bx, by, zx, zy]],
-            path2 = [["M", x, y], ["L", ax, ay], ["M", bx, by], ["L", zx, zy]],
+    function curve(x, y, ax, ay, bx, by, zx, zy, a2x, a2y, b2x, b2y, z2x, z2y,color) {
+        var path = [["M", x, y], ["C", ax, ay, bx, by, zx, zy, a2x, a2y, b2x, b2y, z2x, z2y]],
+            path2 = [["M", x, y], ["L", ax, ay], ["M", bx, by], ["L", zx, zy], ["M", zx, zy], ["L", a2x, a2y], ["M", b2x, b2y], ["L", z2x, z2y]],
             curve = r.path(path).attr({stroke: color || Raphael.getColor(),"stroke-width": 4, "stroke-linecap": "round"}),      
             controls = r.set(
                 r.path(path2).attr({stroke: "#ccc", "stroke-dasharray": ". "}),
                 r.circle(x, y, 5).attr(discattr),
                 r.circle(ax, ay, 5).attr(discattr),
                 r.circle(bx, by, 5).attr(discattr),
-                r.circle(zx, zy, 5).attr(discattr)
+                r.circle(zx, zy, 5).attr(discattr),
+                r.circle(a2x, a2y, 5).attr(discattr),
+                r.circle(b2x, b2y, 5).attr(discattr),
+                r.circle(z2x, z2y, 5).attr(discattr)
+
             );
         update_Kurve_SVG(r,curve.id,"SVGSourceKurve2");
         controls[1].update = function (x, y) {
@@ -153,7 +157,48 @@ function SVGKurve2(){
             path[1][6] = Y;
             path2[3][1] = X;
             path2[3][2] = Y;
+            path2[4][1] = X;
+            path2[4][2] = Y;
             controls[3].update(x, y);
+            controls[5].update(x, y);
+            update_Kurve_SVG(r,curve.id,"SVGSourceKurve2");
+
+        };
+        controls[5].update = function (x, y) {
+            var X = this.attr("cx") + x,
+                Y = this.attr("cy") + y;
+            this.attr({cx: X, cy: Y});
+            path[1][7] = X;
+            path[1][8] = Y;
+            path2[5][1] = X;
+            path2[5][2] = Y;
+            curve.attr({path: path});
+            controls[0].attr({path: path2});
+            update_Kurve_SVG(r,curve.id,"SVGSourceKurve2");
+
+        };
+        controls[6].update = function (x, y) {
+            var X = this.attr("cx") + x,
+                Y = this.attr("cy") + y;
+            this.attr({cx: X, cy: Y});
+            path[1][9] = X;
+            path[1][10] = Y;
+            path2[6][1] = X;
+            path2[6][2] = Y;
+            curve.attr({path: path});
+            controls[0].attr({path: path2});
+            update_Kurve_SVG(r,curve.id,"SVGSourceKurve2");
+
+        };
+        controls[7].update = function (x, y) {
+            var X = this.attr("cx") + x,
+                Y = this.attr("cy") + y;
+            this.attr({cx: X, cy: Y});
+            path[1][11] = X;
+            path[1][12] = Y;
+            path2[7][1] = X;
+            path2[7][2] = Y;
+            controls[6].update(x, y);
             update_Kurve_SVG(r,curve.id,"SVGSourceKurve2");
 
         };
@@ -168,7 +213,7 @@ function SVGKurve2(){
         this.dx = this.dy = 0;
     }
 
-    curve(70, 100, 261, 62, 237, 289, 486, 259, "hsb(0, .75, .75)");
+    curve(70, 100, 261, 62, 75, 349, 271, 220, 402, 122, 320,345, 470, 278, "hsb(.6, .75, .75)");
     // curve(170, 100, 210, 100, 230, 200, 270, 200, "hsb(.8, .75, .75)");
     // curve(270, 100, 310, 100, 330, 200, 370, 200, "hsb(.3, .75, .75)");
     // curve(370, 100, 410, 100, 430, 200, 470, 200, "hsb(.6, .75, .75)");
