@@ -227,13 +227,23 @@ function SVGKurve2(){
     //document.getElementById("SVGSourceKurve").innerHTML=S(r.getById(2).node.outerHTML).escapeHTML().s;
 }
 
-function buttonAction(event){
+function buttonActionkurve2(event){
     if ( event.preventDefault ) { event.preventDefault()};  
     event.returnValue = false;  
-    var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#2f69bf" d="M70,100C261,62,75,349,271,220,402,122,320,345,470,278" stroke-width="4" stroke-linecap="round"></path></svg>';
-    
+    var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
+        content += document.getElementById("SVGKurve2").getElementsByTagName("path")[0].outerHTML;
+        content += '</svg>';
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
-    // var uriContent = "data:application/octet-stream," + encodeURIComponent(content);
+    var newWindow=window.open(uriContent, 'kurve2.svg');
+}
+
+function buttonActionkurve(event){
+    if ( event.preventDefault ) { event.preventDefault()};  
+    event.returnValue = false;  
+    var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
+        content += document.getElementById("SVGKurve").getElementsByTagName("path")[0].outerHTML;
+        content += '</svg>';
+    var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'kurve.svg');
 }
 
@@ -242,12 +252,19 @@ window.onload = function () {
     SVGKurve2();
 
     //Register Buttons
-    var buttonKurve = document.getElementById("button1");
+    var buttonKurve = document.getElementById("buttonkurve2");
     if(buttonKurve.addEventListener){
-             buttonKurve.addEventListener("click", buttonAction);
+             buttonKurve.addEventListener("click", buttonActionkurve2);
         } else {
-             button.attachEvent("click", buttonAction);
+             button.attachEvent("click", buttonActionkurve2);
         };
 
+
+    buttonKurve = document.getElementById("buttonkurve1");
+    if(buttonKurve.addEventListener){
+             buttonKurve.addEventListener("click", buttonActionkurve);
+        } else {
+             button.attachEvent("click", buttonActionkurve);
+        };
 
 };
