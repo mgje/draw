@@ -1,6 +1,8 @@
  function update_Kurve_SVG(r,id,idelment){
-        var s = S('<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative; left: -0.5px; top: -0.875px;">').escapeHTML().s;
-        s += S(r.getById(id).node.outerHTML).escapeHTML().s;
+        var s = S('<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">').escapeHTML().s,
+            n = r.getById(id).node;
+        //n.removeAttributeNode(n.getAttributeNode("style"));
+        s += S(n.outerHTML).escapeHTML().s;
         s += S('</svg>' ).escapeHTML().s;
         document.getElementById(idelment).innerHTML=s;
     }
@@ -22,6 +24,7 @@
                 r.circle(bx, by, 5).attr(discattr),
                 r.circle(zx, zy, 5).attr(discattr)
             );
+        curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
         update_Kurve_SVG(r,curve.id,"SVGSourceKurve");
         controls[1].update = function (x, y) {
             var X = this.attr("cx") + x,
@@ -113,6 +116,7 @@ function SVGKurve2(){
                 r.circle(z2x, z2y, 5).attr(discattr)
 
             );
+        curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
         update_Kurve_SVG(r,curve.id,"SVGSourceKurve2");
         controls[1].update = function (x, y) {
             var X = this.attr("cx") + x,
@@ -223,8 +227,27 @@ function SVGKurve2(){
     //document.getElementById("SVGSourceKurve").innerHTML=S(r.getById(2).node.outerHTML).escapeHTML().s;
 }
 
+function buttonAction(event){
+    if ( event.preventDefault ) { event.preventDefault()};  
+    event.returnValue = false;  
+    var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#2f69bf" d="M70,100C261,62,75,349,271,220,402,122,320,345,470,278" stroke-width="4" stroke-linecap="round"></path></svg>';
+    
+    var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
+    // var uriContent = "data:application/octet-stream," + encodeURIComponent(content);
+    var newWindow=window.open(uriContent, 'kurve.svg');
+}
+
 window.onload = function () {
     SVGKurve();
     SVGKurve2();
+
+    //Register Buttons
+    var buttonKurve = document.getElementById("button1");
+    if(buttonKurve.addEventListener){
+             buttonKurve.addEventListener("click", buttonAction);
+        } else {
+             button.attachEvent("click", buttonAction);
+        };
+
 
 };
