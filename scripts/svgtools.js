@@ -23,27 +23,13 @@ function outerHTML(node){
 
 
   function SVGVielEck() {
-    var r = Raphael("SVGVieleck", 620, 420),
-         data = [   {x: 50, y: 250}, {x: 100, y: 100},{x: 150, y: 150},
-                    {x: 200, y: 140}, {x: 250, y: 250},{x: 300, y: 200},
-                    {x: 350, y: 180}, {x: 400, y: 230} ],
-         path = ['M', data[0].x, data[0].y, 'R'],
-         whiteattr = {fill: "#fff", stroke: "none"},
-         plottedPoints = r.set();
-
-    r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
-    for(var i = 0, num = data.length; i < num; i+=1) {
-       var point = data[i];
-       plottedPoints.push(r.circle(point.x, point.y, 5));
-    }
-    plottedPoints.attr(whiteattr);
-
-    for(var i = 1, num = data.length; i < num; i+=1) {
-       path.push(data[i].x);
-       path.push(data[i].y);
-   }
+    var r = Raphael("SVGVieleck", 620, 420), 
+        data = [   {x: 50, y: 250}, {x: 100, y: 100},{x: 150, y: 150}],
+        path = [ 'M', data[0].x, data[0].y, 'L',data[1].x, data[1].y,
+                 'L',data[2].x, data[2].y, 'L',data[0].x, data[0].y,'Z'];
+        
+   r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
    var curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
-   
    update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
    
      
