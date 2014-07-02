@@ -1,8 +1,22 @@
+function outerHTML(node){
+    // if IE, Chrome take the internal method otherwise build one
+  return node.outerHTML || (
+      function(n){
+          var div = document.createElement('div'), h;
+          div.appendChild( n.cloneNode(true) );
+          h = div.innerHTML;
+          div = null;
+          return h;
+      })(node);
+  } 
+
+
+
  function update_Kurve_SVG(r,id,idelment){
         var s = S('<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">').escapeHTML().s,
             n = r.getById(id).node;
         //n.removeAttributeNode(n.getAttributeNode("style"));
-        s += S(n.outerHTML).escapeHTML().s;
+        s += S(outerHTML(n)).escapeHTML().s;
         s += S('</svg>' ).escapeHTML().s;
         document.getElementById(idelment).innerHTML=s;
     }
@@ -307,11 +321,15 @@ function buttonActionkurve(event){
 }
 
 function secondNavAction(event){
-     alert("something changed");
     var alist = event.currentTarget.getElementsByTagName("a");
-    for(var i = 0, num = atlist.length; i < num; i+=1) {
-        
+    
+    for(var i = 0, num = alist.length; i < num; i+=1) {
+        if (alist[i].className === "selected"){
+            alist[i].className="";
+            break;  // breaks out of loop completely
+        }
     }
+    event.target.className="selected";
 
 
 }

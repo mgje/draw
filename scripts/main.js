@@ -20,17 +20,17 @@
     'use strict';
 
     var navdrawerContainer = document.querySelector('.navdrawer-container');
-    var appbarElement = document.querySelector('.app-bar');
+    // var appbarElement = document.querySelector('.app-bar');
     var menuBtn = document.querySelector('.menu');
     var main = document.querySelector('main');
 
     function closeMenu() {
-        appbarElement.classList.remove('open');
+        // appbarElement.classList.remove('open');
         navdrawerContainer.classList.remove('open');
     }
 
     function toggleMenu() {
-        appbarElement.classList.toggle('open');
+        // appbarElement.classList.toggle('open');
         navdrawerContainer.classList.toggle('open');
     }
 
