@@ -46,15 +46,15 @@
         <nav class="navdrawer-container">
             <h4>Navigation</h4>
             <ul>
-                <li><a href="#Start">Start</a></li>
-                <li><a href="#Punkte">Punkte</a></li>
-                <li><a href="#Linie">Linie</a></li>
-                <li><a href="#Kurve1">Kurve_1</a></li>
-                <li><a href="#Kurve2">Kurve_2</a></li>
-                <li><a href="#Transformation">Transformationen</a></li>
-                <li><a href="#Animation">Animation</a></li>
-                <li><a href="#Laufschrift">Laufschrift</a></li>
-                <li><a href="#Diagramm">Diagramm</a></li>
+                <li><a href="#Start"> Start </a></li>
+                <li><a href="#Kreis"> Kreis </a></li>
+                <li><a href="#Vieleck"> Vieleck </a></li>
+                <li><a href="#Kurve1"> Kurve_1 </a></li>
+                <li><a href="#Kurve2"> Kurve_2 </a></li>
+                <li><a href="#Transformation"> Transformationen </a></li>
+                <li><a href="#Animation"> Animation </a></li>
+                <li><a href="#Laufschrift"> Laufschrift </a></li>
+                <li><a href="#Diagramm"> Diagramm </a></li>
 
             </ul>
         </nav>
@@ -70,19 +70,44 @@
             </div>
         </main>
 
-        <section id="Linie" class="experiment-layer">
+        <section id="Kreis" class="experiment-layer">
             <div class="section_wrapper">
-                <h1>Linien</h1>
+                <h1>Kreis</h1>
                 <p>Welcome to draw SVG</p>
                 
             </div>
         </section>
 
-        <section id="Punkte" class="experiment-layer">
+        <section id="Vieleck" class="experiment-layer">
             <div class="section_wrapper">
-                <h1>Punkte</h1>
-                <p>Welcome to draw SVG</p>
-                
+                <h2>Vieleck</h2>
+                <p>Bewegen Sie einen Stützpunkt (weiss)</p>
+                <div class="code-sample">
+                    <div class="g--half">
+                        <div id="SVGVieleck" ></div>
+                    </div>
+                    <div class="g--half g--last"> 
+                        <p> some stuff </p>
+                        
+                        <nav id="choose-figure" class="second-navdrawer-container">
+                            <h4>Choose Figure</h4>
+                            <ul class="list-guides-intro">
+                                <li><a href="#Dreieck" data-ecken="3">Dreieck</a></li>
+                                <li><a href="#Viereck" data-ecken="4">Viereck</a></li>
+                                <li><a href="#Fuenfeck" data-ecken="5">Fünfeck</a></li>
+                                <li><a href="#Sechseck" data-ecken="6">Sechseck</a></li>
+                                <li><a href="#Siebeneck" data-ecken="7">Siebeneck</a></li>
+                            </ul>
+                        </nav>
+
+
+
+                        <code class="svg"><div class="highlight"><pre id="SVGSourceVieleck" class="pre-wrap">   
+                        
+                        </pre></div></code>
+                    </div>
+                </div>
+                <a id="buttonvieleck" href="#0" class="button--primary">Download Vieleck</a>
             </div>
         </section>
 
