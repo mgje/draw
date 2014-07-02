@@ -252,9 +252,9 @@ button.menu img {
     background-color: #3367D6;
     /*background-color: #CF423A;*/
     color: #fefefe;
-    -webkit-transform: translate(-250px, 0);
+   /* -webkit-transform: translate(-250px, 0);
     transform: translate(-250px, 0);
-    overflow-y: scroll;
+    overflow-y: scroll;*/
 }
 
 .second-navdrawer-container.open {
@@ -263,7 +263,7 @@ button.menu img {
 }
 
 .app-bar, .second-navdrawer-container, main {
-    transition: -webkit-transform 0.3s ease-out;
+    /* transition: -webkit-transform 0.3s ease-out; */
     transition: transform 0.3s ease-out;
 }
 
@@ -317,6 +317,9 @@ button.menu img {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+.selected {
+    background-color: rgba(255, 255, 255, 0.4);
+}
 
 
 main {
@@ -377,7 +380,7 @@ main {
 
     nav {
         display: block;
-        margin-top: 60px;
+        /* margin-top: 60px; */
     }
 
     .navdrawer-container {
@@ -408,6 +411,34 @@ main {
         border: none;
     }
 
+    .second-navdrawer-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 130px;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+        transition: none;
+        overflow-y: auto;
+    }
+
+    .second-navdrawer-container h4 {
+        display: none;
+    }
+
+    .second-navdrawer-container ul {
+        display: -webkit-flex;
+        display: flex;
+        max-width: 864px;
+        margin: 0 auto;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+    }
+
+    .second-navdrawer-container ul li {
+        border: none;
+    }
+
     main {
         max-width: 864px;
         padding-top: 0;
@@ -420,6 +451,11 @@ main {
 
     .navdrawer-container {
         /*position: relative;*/
+        margin-top: 0;
+    }
+
+    .second-navdrawer-container {
+        position: relative;
         margin-top: 0;
     }
 }
@@ -447,6 +483,17 @@ main {
     }
 
     .navdrawer-container li {
+        -webkit-flex: 1;
+        flex: 1;
+        text-align: center;
+    }
+
+    .second-navdrawer-container {
+        padding: 0 16px;
+        overflow-y: auto;
+    }
+
+    .second-navdrawer-container li {
         -webkit-flex: 1;
         flex: 1;
         text-align: center;

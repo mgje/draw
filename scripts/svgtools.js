@@ -283,6 +283,9 @@ function SVGKurve2(){
     //document.getElementById("SVGSourceKurve").innerHTML=S(r.getById(2).node.outerHTML).escapeHTML().s;
 }
 
+// Callback Functions for Buttons
+
+
 function buttonActionkurve2(event){
     if ( event.preventDefault ) { event.preventDefault()};  
     event.returnValue = false;  
@@ -303,6 +306,16 @@ function buttonActionkurve(event){
     var newWindow=window.open(uriContent, 'kurve.svg');
 }
 
+function secondNavAction(event){
+     alert("something changed");
+    var alist = event.currentTarget.getElementsByTagName("a");
+    for(var i = 0, num = atlist.length; i < num; i+=1) {
+        
+    }
+
+
+}
+
 window.onload = function () {
     SVGVielEck();
     SVGKurve();
@@ -314,7 +327,7 @@ window.onload = function () {
     if(buttonKurve.addEventListener){
              buttonKurve.addEventListener("click", buttonActionkurve2);
         } else {
-             button.attachEvent("click", buttonActionkurve2);
+             buttonKurve.attachEvent("click", buttonActionkurve2);
         };
 
 
@@ -322,7 +335,14 @@ window.onload = function () {
     if(buttonKurve.addEventListener){
              buttonKurve.addEventListener("click", buttonActionkurve);
         } else {
-             button.attachEvent("click", buttonActionkurve);
+             buttonKurve.attachEvent("click", buttonActionkurve);
+        };
+
+    var secondnav = document.getElementById("choose-figure");
+    if(secondnav.addEventListener){
+             secondnav.addEventListener("click", secondNavAction);
+        } else {
+             secondnav.attachEvent("click", secondNavAction);
         };
 
 };
