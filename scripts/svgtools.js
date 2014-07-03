@@ -1,3 +1,10 @@
+
+
+////---------- Globals ---------
+//
+var rvieleck = null;
+
+//----------------------------
 function outerHTML(node){
     // if IE, Chrome take the internal method otherwise build one
   return node.outerHTML || (
@@ -22,20 +29,50 @@ function outerHTML(node){
     }
 
 
-  function SVGVielEck() {
-    var r = Raphael("SVGVieleck", 620, 420), 
-        data = [   {x: 50, y: 250}, {x: 100, y: 100},{x: 150, y: 150}],
-        path = [ 'M', data[0].x, data[0].y, 'L',data[1].x, data[1].y,
-                 'L',data[2].x, data[2].y, 'L',data[0].x, data[0].y,'Z'];
-        
+//------------------------------------ SVG Vieleck ---------------------------------
+
+  function SVGVielEck(opts) {
+    var r = typeof(opts.r) === "object" ? opts.r : null,
+        idname = typeof(opts.id) === "string" ? opts.id : null,
+        x = typeof(opts.x) === "number" ? opts.x : null,
+        y = typeof(opts.y) === "number" ? opts.y : null,
+        data = [],
+        path = [];
+
+    if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
+        r =  Raphael(idname, x, y);
+    } 
+
+   var s_anz = document.getElementById("choose-figure").getAttribute("data-ecken");    
+   var anz = Number.parseInt(s_anz); 
+  
+   for(var i = 0; i < anz; i+=1) {
+    var tmp = {};
+    tmp.x = 200*Math.cos(2*Math.PI/anz*i)+300;
+    tmp.y = 200*Math.sin(2*Math.PI/anz*i)+210;
+    data.push(tmp);
+   }
+   
+   for(var i = 0, num = data.length; i < num; i+=1) {
+        if (i === 0) {
+            path.push('M');
+        } else {
+            path.push('L');
+        }
+        path.push(data[i].x);
+        path.push(data[i].y);
+   }
+   path.push('Z');
    r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
    var curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
    update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
+   return (r)
    
+
      
  }
 
-
+// ---------------------------- Diagramm -------------------------
 
  function SVGDiagramm() {
     var r = Raphael("SVGDiagramm", 620, 420),
@@ -63,6 +100,8 @@ function outerHTML(node){
    
      
  }
+
+//----------------------------------- Kurve ----------------
 
  function SVGKurve(){
     var r = Raphael("SVGKurve", 620, 420),
@@ -316,37 +355,41 @@ function secondNavAction(event){
         }
     }
     event.target.className="selected";
+    event.currentTarget.setAttribute("data-ecken",event.target.getAttribute("anz-ecken"));
+    // SVGVielEck("SVGVieleck",620,420);
+    rvieleck = SVGVielEck({r:rvieleck});
 
 
 }
 
 window.onload = function () {
-    SVGVielEck();
+    SVGDiagramm();
+    rvieleck = SVGVielEck({id:"SVGVieleck",x:620,y:420});
     SVGKurve();
     SVGKurve2();
-    SVGDiagramm();
+    
 
     //Register Buttons
     var buttonKurve = document.getElementById("buttonkurve2");
     if(buttonKurve.addEventListener){
              buttonKurve.addEventListener("click", buttonActionkurve2);
-        } else {
+    } else {
              buttonKurve.attachEvent("click", buttonActionkurve2);
-        };
+    }
 
 
     buttonKurve = document.getElementById("buttonkurve1");
     if(buttonKurve.addEventListener){
              buttonKurve.addEventListener("click", buttonActionkurve);
-        } else {
+    } else {
              buttonKurve.attachEvent("click", buttonActionkurve);
-        };
+    }
 
     var secondnav = document.getElementById("choose-figure");
     if(secondnav.addEventListener){
              secondnav.addEventListener("click", secondNavAction);
-        } else {
+    } else {
              secondnav.attachEvent("click", secondNavAction);
-        };
+    }
 
 };
