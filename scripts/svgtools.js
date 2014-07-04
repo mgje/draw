@@ -5,6 +5,16 @@
 var rvieleck = null;
 
 //----------------------------
+
+    function move(dx, dy) {
+        this.update(dx - (this.dx || 0), dy - (this.dy || 0));
+        this.dx = dx;
+        this.dy = dy;
+    }
+    function up() {
+        this.dx = this.dy = 0;
+    }
+
 function outerHTML(node){
     // if IE, Chrome take the internal method otherwise build one
   return node.outerHTML || (
@@ -17,8 +27,6 @@ function outerHTML(node){
       })(node);
   } 
 
-
-
  function update_Kurve_SVG(r,id,idelment){
         var s = S('<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">').escapeHTML().s,
             n = r.getById(id).node;
@@ -28,7 +36,6 @@ function outerHTML(node){
         document.getElementById(idelment).innerHTML=s;
     }
 
-
 //------------------------------------ SVG Vieleck ---------------------------------
 
   function SVGVielEck(opts) {
@@ -37,11 +44,24 @@ function outerHTML(node){
         x = typeof(opts.x) === "number" ? opts.x : null,
         y = typeof(opts.y) === "number" ? opts.y : null,
         data = [],
+        discattr = {fill: "#fff", stroke: "none"},
+        circles =[],
+        curve = null;
         path = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         r =  Raphael(idname, x, y);
     } 
+
+   var nodes = r.canvas.childNodes; 
+   // Alles Löschen bis auf die ersten beiden
+   while (nodes.length > 2){
+    r.canvas.removeChild(nodes[2]);
+   }
+
+   // for(var i = 2, num = nodes.length; i < num; i+=1) {
+   //      r.canvas.removeChild(nodes[i]);
+   // }
 
    var s_anz = document.getElementById("choose-figure").getAttribute("data-ecken");    
    var anz = Number.parseInt(s_anz); 
@@ -53,6 +73,9 @@ function outerHTML(node){
     data.push(tmp);
    }
    
+
+   r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+
    for(var i = 0, num = data.length; i < num; i+=1) {
         if (i === 0) {
             path.push('M');
@@ -63,13 +86,30 @@ function outerHTML(node){
         path.push(data[i].y);
    }
    path.push('Z');
-   r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
-   var curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
-   update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
-   return (r)
-   
+   curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
 
-     
+   for(var i = 0, num = data.length; i < num; i+=1) {
+        var cir = r.circle(data[i].x, data[i].y, 5).attr(discattr);
+        circles.push(cir);
+        cir.idnum=i;
+        cir.update=function (x, y) {
+            var X = this.attr("cx") + x,
+                Y = this.attr("cy") + y;
+            this.attr({cx: X, cy: Y});
+            path[this.idnum*3+1]=X;
+            path[this.idnum*3+2]=Y;
+            curve.attr({path: path});
+            update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
+        };
+
+   }
+
+   controls = r.set(circles);
+
+   controls.drag(move, up);
+                
+   update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
+   return (r)     
  }
 
 // ---------------------------- Diagramm -------------------------
@@ -96,9 +136,7 @@ function outerHTML(node){
    }
    var curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
    
-   update_Kurve_SVG(r,curve.id,"SVGSourceDiagramm");
-   
-     
+   update_Kurve_SVG(r,curve.id,"SVGSourceDiagramm");   
  }
 
 //----------------------------------- Kurve ----------------
@@ -170,14 +208,7 @@ function outerHTML(node){
         };
         controls.drag(move, up);
     }
-    function move(dx, dy) {
-        this.update(dx - (this.dx || 0), dy - (this.dy || 0));
-        this.dx = dx;
-        this.dy = dy;
-    }
-    function up() {
-        this.dx = this.dy = 0;
-    }
+
 
     curve(70, 100, 261, 62, 237, 289, 486, 259, "hsb(0, .75, .75)");
     // curve(170, 100, 210, 100, 230, 200, 270, 200, "hsb(.8, .75, .75)");
