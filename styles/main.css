@@ -190,10 +190,11 @@ button.menu img {
 }
 
 .navdrawer-container h4,
+
 .navdrawer-container ul li a {
     height: 60px;
     padding: 0 20px;
-    line-height: 60px;
+    /*line-height: 60px;*/
 }
 
 .navdrawer-container h4 {
@@ -220,6 +221,7 @@ button.menu img {
     border-width: 1px;
     border-color: white;
     padding: 0;
+    line-height: 60px;
 }
 
 .navdrawer-container ul li:before {
@@ -271,7 +273,7 @@ button.menu img {
 .second-navdrawer-container ul li a {
     height: 60px;
     padding: 0 20px;
-    line-height: 60px;
+    /*line-height: 60px;*/
 }
 
 .second-navdrawer-container h4 {
@@ -290,6 +292,7 @@ button.menu img {
     display: block;
     text-decoration: none;
     color: white;
+
     transition: background-color 0.2s ease-out;
 }
 
@@ -298,6 +301,7 @@ button.menu img {
     border-width: 1px;
     border-color: white;
     padding: 0;
+    line-height: 60px;
 }
 
 .second-navdrawer-container ul li:before {
@@ -437,6 +441,7 @@ main {
 
     .second-navdrawer-container ul li {
         border: none;
+        line-height: 60px;
     }
 
     main {

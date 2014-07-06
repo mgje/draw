@@ -35,9 +35,31 @@ function outerHTML(node){
         s += S('</svg>' ).escapeHTML().s;
         document.getElementById(idelment).innerHTML=s;
     }
+//------------------------------------ SVG Kreis ---------------------------------
+
+function SVGKreis(opts) {
+    var r = typeof(opts.r) === "object" ? opts.r : null,
+        idname = typeof(opts.id) === "string" ? opts.id : null,
+        x = typeof(opts.x) === "number" ? opts.x : null,
+        y = typeof(opts.y) === "number" ? opts.y : null,
+        discattr = {fill: "none", stroke: "hsb(.9, .75, .75)","stroke-width": 4},
+        circles = [];
+
+    if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
+        r =  Raphael(idname, x, y);
+    } 
+
+
+    r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+    circles.push(r.circle(300,300, 99).attr(discattr));
+}
+
+     
+
+
+
 
 //------------------------------------ SVG Vieleck ---------------------------------
-
   function SVGVielEck(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
         idname = typeof(opts.id) === "string" ? opts.id : null,
@@ -68,8 +90,8 @@ function outerHTML(node){
   
    for(var i = 0; i < anz; i+=1) {
     var tmp = {};
-    tmp.x = 200*Math.cos(2*Math.PI/anz*i)+300;
-    tmp.y = 200*Math.sin(2*Math.PI/anz*i)+210;
+    tmp.x = Math.round(200*Math.cos(2*Math.PI/anz*i)+300);
+    tmp.y = Math.round(200*Math.sin(2*Math.PI/anz*i)+210);
     data.push(tmp);
    }
    
@@ -356,11 +378,22 @@ function SVGKurve2(){
 // Callback Functions for Buttons
 
 
+function buttonActionvieleck(event){
+    if ( event.preventDefault ) { event.preventDefault()};  
+    event.returnValue = false;  
+    var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
+        content += outerHTML(document.getElementById("SVGVieleck").getElementsByTagName("path")[0]);
+        content += '</svg>';
+    var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
+    var newWindow=window.open(uriContent, 'kurve2.svg');
+}
+
+
 function buttonActionkurve2(event){
     if ( event.preventDefault ) { event.preventDefault()};  
     event.returnValue = false;  
     var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
-        content += document.getElementById("SVGKurve2").getElementsByTagName("path")[0].outerHTML;
+        content += outerHTML(document.getElementById("SVGKurve2").getElementsByTagName("path")[0]);
         content += '</svg>';
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'kurve2.svg');
@@ -370,7 +403,7 @@ function buttonActionkurve(event){
     if ( event.preventDefault ) { event.preventDefault()};  
     event.returnValue = false;  
     var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
-        content += document.getElementById("SVGKurve").getElementsByTagName("path")[0].outerHTML;
+        content += outerHTML(document.getElementById("SVGKurve").getElementsByTagName("path")[0]);
         content += '</svg>';
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'kurve.svg');
@@ -395,25 +428,34 @@ function secondNavAction(event){
 
 window.onload = function () {
     SVGDiagramm();
+    SVGKreis({id:"SVGKreis",x:620,y:420});
     rvieleck = SVGVielEck({id:"SVGVieleck",x:620,y:420});
     SVGKurve();
     SVGKurve2();
     
 
     //Register Buttons
-    var buttonKurve = document.getElementById("buttonkurve2");
-    if(buttonKurve.addEventListener){
-             buttonKurve.addEventListener("click", buttonActionkurve2);
+
+    var button = document.getElementById("buttonvieleck");
+    if(button.addEventListener){
+             button.addEventListener("click", buttonActionvieleck);
     } else {
-             buttonKurve.attachEvent("click", buttonActionkurve2);
+             button.attachEvent("click", buttonActionvieleck);
+    }
+
+    button = document.getElementById("buttonkurve2");
+    if(button.addEventListener){
+             button.addEventListener("click", buttonActionkurve2);
+    } else {
+             button.attachEvent("click", buttonActionkurve2);
     }
 
 
-    buttonKurve = document.getElementById("buttonkurve1");
-    if(buttonKurve.addEventListener){
-             buttonKurve.addEventListener("click", buttonActionkurve);
+    button = document.getElementById("buttonkurve1");
+    if(button.addEventListener){
+             button.addEventListener("click", buttonActionkurve);
     } else {
-             buttonKurve.attachEvent("click", buttonActionkurve);
+             button.attachEvent("click", buttonActionkurve);
     }
 
     var secondnav = document.getElementById("choose-figure");
