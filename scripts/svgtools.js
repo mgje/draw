@@ -51,12 +51,16 @@ function SVGKreis(opts) {
         x = typeof(opts.x) === "number" ? opts.x : null,
         y = typeof(opts.y) === "number" ? opts.y : null,
         discattr = {fill: "none","stroke-width": 4,stroke: "hsb(.9, .75, .75)"},
+        discattr2 = {fill: "#fff", stroke: "none"},
         tmp = null,
         n_K = 20,
         r0 = -1,
         x0 = -1,
         y0 = -1,
-        s_n_K = "";
+        cir = null,
+        s_n_K = "",
+        list_cir= [],
+        controls = null,
         circles = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
@@ -76,9 +80,21 @@ function SVGKreis(opts) {
         tmp = r.circle(x0,y0, r0).attr(discattr);
         tmp.node.removeAttributeNode(tmp.node.getAttributeNode("style"));
         circles.push(tmp);
+        cir = r.circle(x0, y0,5).attr(discattr2);
+        cir.idnum=i;
+        list_cir.push(cir);
+        cir.update=function (x, y) {
+            var X = this.attr("cx") + x,
+                Y = this.attr("cy") + y;
+            this.attr({cx: X, cy: Y});
+            circles[this.idnum].attr({cx: X, cy: Y});
+            update_NodeList_SVG(circles,"SVGSourceKreis");
+        };
+        
     }
 
-
+    controls = r.set(list_cir);
+    controls.drag(move, up);
 
     update_NodeList_SVG(circles,"SVGSourceKreis");
     return (r) 
@@ -93,7 +109,8 @@ function SVGKreis(opts) {
         data = [],
         discattr = {fill: "#fff", stroke: "none"},
         circles =[],
-        curve = null;
+        curve = null,
+        controls = null,
         path = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
