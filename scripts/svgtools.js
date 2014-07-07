@@ -60,6 +60,7 @@ function SVGKreis(opts) {
         cir = null,
         s_n_K = "",
         list_cir= [],
+        list_r=[],
         controls = null,
         circles = [];
 
@@ -85,15 +86,34 @@ function SVGKreis(opts) {
         list_cir.push(cir);
         cir.update=function (x, y) {
             var X = this.attr("cx") + x,
-                Y = this.attr("cy") + y;
+                Y = this.attr("cy") + y,
+                YR = -circles[this.idnum].attr("r")+Y;
             this.attr({cx: X, cy: Y});
             circles[this.idnum].attr({cx: X, cy: Y});
+            list_r[this.idnum].attr({cx: X, cy: YR});
+            update_NodeList_SVG(circles,"SVGSourceKreis");
+        };
+
+        cir = r.circle(x0, y0-r0,5).attr(discattr2);
+        cir.idnum=i;
+        list_r.push(cir);
+        cir.update=function (x, y) {
+            var Y = this.attr("cy") + y,
+            y0=circles[this.idnum].attr("cy"),
+            r0=y0-Y;
+            circles[this.idnum].attr({r:r0})
+            this.attr({cy: Y});
+
+            
             update_NodeList_SVG(circles,"SVGSourceKreis");
         };
         
     }
 
     controls = r.set(list_cir);
+    controls.drag(move, up);
+
+    controls = r.set(list_r);
     controls.drag(move, up);
 
     update_NodeList_SVG(circles,"SVGSourceKreis");
