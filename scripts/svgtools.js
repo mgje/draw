@@ -1,8 +1,7 @@
-
-
 ////---------- Globals ---------
-//
-var rvieleck = null;
+
+var rvieleck = null,
+    rkreise = null;
 
 //----------------------------
 
@@ -35,6 +34,15 @@ function outerHTML(node){
         s += S('</svg>' ).escapeHTML().s;
         document.getElementById(idelment).innerHTML=s;
     }
+
+function update_NodeList_SVG(nodelist,idelment){
+        var s = S('<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">').escapeHTML().s;
+        for(var i = 0, num = nodelist.length; i < num; i+=1) {
+            s += S(outerHTML(nodelist[i].node)).escapeHTML().s;
+        }
+        s += S('</svg>' ).escapeHTML().s;
+        document.getElementById(idelment).innerHTML=s;
+    }    
 //------------------------------------ SVG Kreis ---------------------------------
 
 function SVGKreis(opts) {
@@ -42,23 +50,40 @@ function SVGKreis(opts) {
         idname = typeof(opts.id) === "string" ? opts.id : null,
         x = typeof(opts.x) === "number" ? opts.x : null,
         y = typeof(opts.y) === "number" ? opts.y : null,
-        discattr = {fill: "none", stroke: "hsb(.9, .75, .75)","stroke-width": 4},
+        discattr = {fill: "none","stroke-width": 4,stroke: "hsb(.9, .75, .75)"},
+        tmp = null,
+        n_K = 20,
+        r0 = -1,
+        x0 = -1,
+        y0 = -1,
+        s_n_K = "";
         circles = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         r =  Raphael(idname, x, y);
     } 
 
-
     r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
-    circles.push(r.circle(300,300, 99).attr(discattr));
+
+    s_n_K = document.getElementById("choose-AnzKreise").getAttribute("data-kreise");    
+    n_K = Number.parseInt(s_n_K); 
+
+    for(var i = 0; i < n_K; i+=1) {
+        x0 = Math.round(Math.random()*300)+150;
+        y0 = Math.round(Math.random()*300)+70;
+        r0 = Math.round(Math.random()*70)+30;
+        discattr.stroke="hsb("+i*0.05+0.3+", .75, .75)";
+        tmp = r.circle(x0,y0, r0).attr(discattr);
+        tmp.node.removeAttributeNode(tmp.node.getAttributeNode("style"));
+        circles.push(tmp);
+    }
+
+
+
+    update_NodeList_SVG(circles,"SVGSourceKreis");
+    return (r) 
+
 }
-
-     
-
-
-
-
 //------------------------------------ SVG Vieleck ---------------------------------
   function SVGVielEck(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
@@ -377,6 +402,19 @@ function SVGKurve2(){
 
 // Callback Functions for Buttons
 
+function buttonActionkreis(event){
+    if ( event.preventDefault ) { event.preventDefault()};  
+    event.returnValue = false;  
+    var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
+    var circlist = document.getElementById("SVGKreis").getElementsByTagName("circle");
+    for(var i = 0, num = circlist.length; i < num; i+=1) {
+        content += outerHTML(circlist[i]);
+    }    
+    content += '</svg>';
+    var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
+    var newWindow=window.open(uriContent, 'kurve2.svg');
+}
+
 
 function buttonActionvieleck(event){
     if ( event.preventDefault ) { event.preventDefault()};  
@@ -422,13 +460,28 @@ function secondNavAction(event){
     event.currentTarget.setAttribute("data-ecken",event.target.getAttribute("anz-ecken"));
     // SVGVielEck("SVGVieleck",620,420);
     rvieleck = SVGVielEck({r:rvieleck});
-
-
 }
+
+
+function secondNavActionKreise(event){
+    var alist = event.currentTarget.getElementsByTagName("a");
+    
+    for(var i = 0, num = alist.length; i < num; i+=1) {
+        if (alist[i].className === "selected"){
+            alist[i].className="";
+            break;  // breaks out of loop completely
+        }
+    }
+    event.target.className="selected";
+    event.currentTarget.setAttribute("data-kreise",event.target.getAttribute("anz-kreis"));
+    rkreise = SVGKreis({r:rkreise});
+}
+
+
 
 window.onload = function () {
     SVGDiagramm();
-    SVGKreis({id:"SVGKreis",x:620,y:420});
+    rkreise = SVGKreis({id:"SVGKreis",x:620,y:420});
     rvieleck = SVGVielEck({id:"SVGVieleck",x:620,y:420});
     SVGKurve();
     SVGKurve2();
@@ -436,7 +489,14 @@ window.onload = function () {
 
     //Register Buttons
 
-    var button = document.getElementById("buttonvieleck");
+    var button = document.getElementById("buttonkreis");
+    if(button.addEventListener){
+             button.addEventListener("click", buttonActionkreis);
+    } else {
+             button.attachEvent("click", bbuttonActionkreis);
+    }
+
+    button = document.getElementById("buttonvieleck");
     if(button.addEventListener){
              button.addEventListener("click", buttonActionvieleck);
     } else {
@@ -463,6 +523,13 @@ window.onload = function () {
              secondnav.addEventListener("click", secondNavAction);
     } else {
              secondnav.attachEvent("click", secondNavAction);
+    }
+
+    secondnav = document.getElementById("choose-AnzKreise");
+    if(secondnav.addEventListener){
+             secondnav.addEventListener("click", secondNavActionKreise);
+    } else {
+             secondnav.attachEvent("click", secondNavActionKreise);
     }
 
 };
