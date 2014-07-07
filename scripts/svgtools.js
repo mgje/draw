@@ -1,6 +1,7 @@
 ////---------- Globals ---------
 
 var rvieleck = null,
+    rtransformation = null,
     rkreise = null;
 
 //----------------------------
@@ -437,6 +438,41 @@ function SVGKurve2(){
     //document.getElementById("SVGSourceKurve").innerHTML=S(r.getById(2).node.outerHTML).escapeHTML().s;
 }
 
+// ----------------------------- Transformation ---------------------------------
+function SVGTransformation(opts) {
+    var r = typeof(opts.r) === "object" ? opts.r : null,
+        idname = typeof(opts.id) === "string" ? opts.id : null,
+        x = typeof(opts.x) === "number" ? opts.x : null,
+        y = typeof(opts.y) === "number" ? opts.y : null,
+        discattr = {fill: "none","stroke-width": 4,stroke: "hsb(.9, .75, .75)"},
+        discattr2 = {fill: "#fff", stroke: "none"},
+        tmp = null;
+
+    if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
+        r =  Raphael(idname, x, y);
+    } 
+
+   var n_K = 5;
+   var nodes = r.canvas.childNodes; 
+   // Alles Löschen bis auf die ersten beiden
+   while (nodes.length > 2){
+    r.canvas.removeChild(nodes[2]);
+   }
+
+   for(var i = 0; i < n_K; i+=1) {
+        x0 = Math.round(Math.random()*300)+150;
+        y0 = Math.round(Math.random()*300)+70;
+        r0 = Math.round(Math.random()*70)+30;
+        discattr.stroke="hsb("+i*0.05+0.3+", .75, .75)";
+        tmp = r.circle(x0,y0,r0).attr(discattr);
+    }
+
+
+  update_NodeList_SVG(tmp,"SVGSourceTransformation");
+  return (r) 
+}
+
+// ----------------------------------------------------------------------------
 // Callback Functions for Buttons
 
 function buttonActionkreis(event){
@@ -525,6 +561,7 @@ window.onload = function () {
     rvieleck = SVGVielEck({id:"SVGVieleck",x:620,y:420});
     SVGKurve();
     SVGKurve2();
+    rtransformation = SVGTransformation({id:"SVGTransformation",x:620,y:420});
     
 
     //Register Buttons
