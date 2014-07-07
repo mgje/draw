@@ -442,13 +442,16 @@ function SVGKurve2(){
 function buttonActionkreis(event){
     if ( event.preventDefault ) { event.preventDefault()};  
     event.returnValue = false;  
-    var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
-    var circlist = document.getElementById("SVGKreis").getElementsByTagName("circle");
-    for(var i = 0, num = circlist.length; i < num; i+=1) {
-        content += outerHTML(circlist[i]);
-    }    
-    content += '</svg>';
+    // var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
+    // var circlist = document.getElementById("SVGKreis").getElementsByTagName("circle");
+    // for(var i = 0, num = circlist.length; i < num; i+=1) {
+    //     content += outerHTML(circlist[i]);
+    // }    
+    // content += '</svg>';
+    var content = document.getElementById("SVGSourceKreis").textContent;
+
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
+    // var uriContent = "data:image/svg+xml," + content;
     var newWindow=window.open(uriContent, 'kurve2.svg');
 }
 
