@@ -171,23 +171,23 @@
         <section id="Transformation" class="experiment-layer">
             <div class="section_wrapper">
                 <h2>Transformation</h2>
+                <p id="message_trans">keine Transformation</p>
                 <div class="code-sample">
                     <div class="g--half">
                         <div id="SVGTransformation" ></div>
                     </div>
                     <div class="g--half g--last"> 
-                        <nav id="choose-transformation" class="second-navdrawer-container" data-kreise="1">
+                        <nav id="choose-transformation" class="second-navdrawer-container" matrix="1">
                             <h4>Choose NUMBER</h4>
                             <ul>
-                                <li ><a class="selected" href="#1Kreis" matrix="1" >T +</a></li>
-                                <li><a href="#1Kreis" matrix="2">T -</a></li>
-                                <li><a href="#1Kreis" matrix="3">D +</a></li>
-                                <li><a href="#1Kreis" matrix="4">D -</a></li>
-                                <li><a href="#1Kreis" matrix="5">S x</a></li>
-                                <li><a href="#1Kreis" matrix="10">S y</a></li>
-                                <li><a href="#1Kreis" matrix="10">Verz</a></li>
-                                <li><a href="#1Kreis" matrix="20">Rück</a></li>
-                                
+                                <li><a class="selected" href="#Trans" matrix="T0,0" message="keine Transformation">Start</a></li>
+                                <li ><a href="#Trans" matrix="T190,0" message="Verschieben um 190 Pixel">T +</a></li>
+                                <li><a href="#Trans" matrix="T-190,0" message="Verschieben um -190 Pixel">T -</a></li>
+                                <li><a href="#Trans" matrix="R45" message="Drehen um 45 Grad">D +</a></li>
+                                <li><a href="#Trans" matrix="R-45" message="Drehen um -45 Grad">D -</a></li>
+                                <li><a href="#Trans" matrix="S-1.0,1.0" message="horizontal spiegeln">S x</a></li>
+                                <li><a href="#Trans" matrix="S1.0,-1.0" message="vertikal spiegeln">S y</a></li>
+                                <li><a href="#Trans" matrix="m, 1, 0, 0.13, 1, 0, 0" message="Verzerren">Verz</a></li>
                             </ul>
                         </nav>
                         <code class="svg"><div class="highlight"><pre id="SVGSourceTransformation" class="pre-wrap">   
@@ -253,9 +253,6 @@
 
     
         </section>
-
- 
-
 
         <!-- build:js scripts/main.min.js -->
         <script src="scripts/main.js"></script>
