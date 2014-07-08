@@ -69,6 +69,12 @@ function SVGKreis(opts) {
         r =  Raphael(idname, x, y);
     } 
 
+    var nodes = r.canvas.childNodes; 
+   // Alles Löschen bis auf die ersten beiden
+   while (nodes.length > 2){
+    r.canvas.removeChild(nodes[2]);
+   }
+
     r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
 
     s_n_K = document.getElementById("choose-AnzKreise").getAttribute("data-kreise");    
@@ -459,13 +465,15 @@ function SVGTransformation(opts) {
     r.canvas.removeChild(nodes[2]);
    }
 
-   for(var i = 0; i < n_K; i+=1) {
-        x0 = Math.round(Math.random()*300)+150;
-        y0 = Math.round(Math.random()*300)+70;
-        r0 = Math.round(Math.random()*70)+30;
-        discattr.stroke="hsb("+i*0.05+0.3+", .75, .75)";
-        tmp = r.circle(x0,y0,r0).attr(discattr);
-    }
+   tmp = r.image("images/biber.png",200,110,166,205);
+
+   // for(var i = 0; i < n_K; i+=1) {
+   //      x0 = Math.round(Math.random()*300)+150;
+   //      y0 = Math.round(Math.random()*300)+70;
+   //      r0 = Math.round(Math.random()*70)+30;
+   //      discattr.stroke="hsb("+i*0.05+0.3+", .75, .75)";
+   //      tmp = r.circle(x0,y0,r0).attr(discattr);
+   //  }
 
 
   update_NodeList_SVG(tmp,"SVGSourceTransformation");
