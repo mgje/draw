@@ -37,13 +37,22 @@ function outerHTML(node){
     }
 
 function update_NodeList_SVG(nodelist,idelment){
-        var s = S('<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">').escapeHTML().s;
+        var s = S('<svg height="420" width="620" xmlns="http://www.w3.org/2000/svg" version="1.1">').escapeHTML().s;
         for(var i = 0, num = nodelist.length; i < num; i+=1) {
             s += S(outerHTML(nodelist[i].node)).escapeHTML().s;
         }
         s += S('</svg>' ).escapeHTML().s;
         document.getElementById(idelment).innerHTML=s;
-    }    
+    } 
+function update_NodeList_SVG_xlink(nodelist,idelment){
+        var s = S('<svg height="420" width="620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">').escapeHTML().s;
+        for(var i = 0, num = nodelist.length; i < num; i+=1) {
+            s += S(outerHTML(nodelist[i].node)).escapeHTML().s;
+        }
+        s += S('</svg>' ).escapeHTML().s;
+        document.getElementById(idelment).innerHTML=s;
+    }     
+
 //------------------------------------ SVG Kreis ---------------------------------
 
 function SVGKreis(opts) {
@@ -210,6 +219,7 @@ function SVGKreis(opts) {
          data = [   {x: 50, y: 250}, {x: 100, y: 100},{x: 150, y: 150},
                     {x: 200, y: 140}, {x: 250, y: 250},{x: 300, y: 200},
                     {x: 350, y: 180}, {x: 400, y: 230} ],
+         curve = null;
          path = ['M', data[0].x, data[0].y, 'R'],
          whiteattr = {fill: "#fff", stroke: "none"},
          plottedPoints = r.set();
@@ -225,7 +235,8 @@ function SVGKreis(opts) {
        path.push(data[i].x);
        path.push(data[i].y);
    }
-   var curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
+   curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
+   curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
    
    update_Kurve_SVG(r,curve.id,"SVGSourceDiagramm");   
  }
@@ -425,14 +436,14 @@ function SVGKurve2(){
         };
         controls.drag(move, up);
     }
-    function move(dx, dy) {
-        this.update(dx - (this.dx || 0), dy - (this.dy || 0));
-        this.dx = dx;
-        this.dy = dy;
-    }
-    function up() {
-        this.dx = this.dy = 0;
-    }
+    // function move(dx, dy) {
+    //     this.update(dx - (this.dx || 0), dy - (this.dy || 0));
+    //     this.dx = dx;
+    //     this.dy = dy;
+    // }
+    // function up() {
+    //     this.dx = this.dy = 0;
+    // }
 
     curve(70, 100, 261, 62, 75, 349, 271, 220, 402, 122, 320,345, 470, 278, "hsb(.6, .75, .75)");
     // curve(170, 100, 210, 100, 230, 200, 270, 200, "hsb(.8, .75, .75)");
@@ -454,48 +465,121 @@ function SVGTransformation(opts) {
         orig = null,
         copy = null,
         nodes = null,
+        controls = null,
+        x0 = 180,
+        y0 = 110,
+        dx = 166,
+        dy = 205,
+        discattr = {fill: "#fff", stroke: "none"},
+        tmp = 0.0;
         objlist = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         r =  Raphael(idname, x, y);
     } 
-
+   
    nodes = r.canvas.childNodes; 
    // Alles Löschen bis auf die ersten beiden
    while (nodes.length > 2){
     r.canvas.removeChild(nodes[2]);
    }
-
-   orig = r.image("images/biber.png",180,110,166,205);
-   trans = document.getElementById("choose-transformation").getAttribute("matrix");
-   copy = orig.clone();
-   copy.transform(trans);
+   r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+   r.path([["M", 150, 360], ["L", 450, 360]]).attr({stroke: "#ccc", "stroke-dasharray": ". "});
+   orig = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
    
-   orig.attr({"fill-opacity":0.5,fill: "#fff",opacity:0.3});
-
+   orig.node.removeAttributeNode(orig.node.getAttributeNode("preserveAspectRatio"));
+   trans = document.getElementById("choose-transformation").getAttribute("transformation");
    objlist.push(orig);
-   objlist.push(copy);
-  update_NodeList_SVG(objlist,"SVGSourceTransformation");
+
+   if (trans !== "n"){
+        copy = orig.clone();
+        copy.node.removeAttributeNode(copy.node.getAttributeNode("style"));
+        copy.node.removeAttributeNode(copy.node.getAttributeNode("preserveAspectRatio"));
+        copy.transform(trans);
+        objlist.push(copy);
+   
+        orig.attr({opacity:0.3});
+    
+    // Controls
+        var res = trans.split(",");
+                if (res[0][0] === "T"){
+                    tmp = parseFloat(res[0].substring(1,res[0].length))/2+300;
+                } else { 
+                    if (res[0][0] === "R") {
+                        tmp = parseFloat(res[0].substring(1,res[0].length))+300;
+                    } else {
+                        tmp = 300;
+                    }
+                }
+
+        controls = r.set(
+                r.circle(tmp, 360, 5).attr(discattr)
+            );
+
+        var transformation = document.getElementById("choose-transformation").getAttribute("transformation");
+        controls[0].update = function (x, y) {
+            var s = null,
+                tf = null,
+                X = null;
+            // Verschiedene Controls
+            if (trans[0] ==="T"){
+                X = this.attr("cx") + x;
+                if (X<450&&X>150){
+                    this.attr({cx: X});
+                }
+                tf ="T"+((X-300)*2)+",0";
+                copy.transform(tf);
+                s = "Verschieben um "+((X-300)*2)+" Pixel";
+                document.getElementById("message_trans").textContent=s;
+            }
+            if (trans[0] ==="R"){
+                X = this.attr("cx") + x;
+                if (X<450&&X>150){
+                    this.attr({cx: X});
+                }
+                tf ="R"+(X-300);
+                copy.transform(tf);
+                s = "Drehen um "+(X-300)+" Grad";
+                document.getElementById("message_trans").textContent=s;
+            }
+
+
+
+            update_NodeList_SVG_xlink(objlist,"SVGSourceTransformation");
+        };
+
+        controls.drag(move, up);
+    }    
+
+
+
+
+  orig.node.removeAttributeNode(orig.node.getAttributeNode("style"));
+  update_NodeList_SVG_xlink(objlist,"SVGSourceTransformation");
   return (r) 
 }
 
 // ----------------------------------------------------------------------------
 // Callback Functions for Buttons
 
+function buttonActiontransformation(event){
+    if ( event.preventDefault ) { event.preventDefault()};  
+    event.returnValue = false;  
+    var content = document.getElementById("SVGSourceTransformation").textContent;
+
+    var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
+    var newWindow=window.open(uriContent, 'kreis.svg');
+}
+
+
+
 function buttonActionkreis(event){
     if ( event.preventDefault ) { event.preventDefault()};  
     event.returnValue = false;  
-    // var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
-    // var circlist = document.getElementById("SVGKreis").getElementsByTagName("circle");
-    // for(var i = 0, num = circlist.length; i < num; i+=1) {
-    //     content += outerHTML(circlist[i]);
-    // }    
-    // content += '</svg>';
     var content = document.getElementById("SVGSourceKreis").textContent;
 
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
-    // var uriContent = "data:image/svg+xml," + content;
-    var newWindow=window.open(uriContent, 'kurve2.svg');
+    var newWindow=window.open(uriContent, 'kreis.svg');
 }
 
 
@@ -506,7 +590,7 @@ function buttonActionvieleck(event){
         content += outerHTML(document.getElementById("SVGVieleck").getElementsByTagName("path")[0]);
         content += '</svg>';
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
-    var newWindow=window.open(uriContent, 'kurve2.svg');
+    var newWindow=window.open(uriContent, 'vieleck.svg');
 }
 
 
@@ -572,7 +656,7 @@ function secondNavActionTransformation(event){
         }
     }
     event.target.className="selected";
-    event.currentTarget.setAttribute("matrix",event.target.getAttribute("matrix"));
+    event.currentTarget.setAttribute("transformation",event.target.getAttribute("matrix"));
     document.getElementById("message_trans").textContent=event.target.getAttribute("message");
 
     rtransformation = SVGTransformation({r:rtransformation});
@@ -589,12 +673,19 @@ window.onload = function () {
     
 
     //Register Buttons
+    var button = document.getElementById("buttontransformation");
+    if(button.addEventListener){
+             button.addEventListener("click", buttonActiontransformation);
+    } else {
+             button.attachEvent("click", buttonActiontransformation);
+    }
 
-    var button = document.getElementById("buttonkreis");
+
+    button = document.getElementById("buttonkreis");
     if(button.addEventListener){
              button.addEventListener("click", buttonActionkreis);
     } else {
-             button.attachEvent("click", bbuttonActionkreis);
+             button.attachEvent("click", buttonActionkreis);
     }
 
     button = document.getElementById("buttonvieleck");
