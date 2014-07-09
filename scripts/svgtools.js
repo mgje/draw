@@ -2,18 +2,30 @@
 
 var rvieleck = null,
     rtransformation = null,
-    rkreise = null;
+    rkreise = null,
+    ranimation = null;
 
 //----------------------------
+// Helper Function
+function move(dx, dy) {
+    this.update(dx - (this.dx || 0), dy - (this.dy || 0));
+    this.dx = dx;
+    this.dy = dy;
+}
 
-    function move(dx, dy) {
-        this.update(dx - (this.dx || 0), dy - (this.dy || 0));
-        this.dx = dx;
-        this.dy = dy;
-    }
-    function up() {
-        this.dx = this.dy = 0;
-    }
+function up() {
+    this.dx = this.dy = 0;
+}
+
+
+// Create Elmente in with namespace bla bla
+function createOn(el,name,attrs){
+    var e = document.createElementNS(el.namespaceURI,name);      
+    for (var name in attrs) e.setAttribute(name,attrs[name]);
+    el.appendChild(e);
+    return e;
+}
+
 
 function outerHTML(node){
     // if IE, Chrome take the internal method otherwise build one
@@ -471,7 +483,7 @@ function SVGTransformation(opts) {
         dx = 166,
         dy = 205,
         discattr = {fill: "#fff", stroke: "none"},
-        tmp = 0.0;
+        tmp = 0.0,
         objlist = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
@@ -508,7 +520,11 @@ function SVGTransformation(opts) {
                     if (res[0][0] === "R") {
                         tmp = parseFloat(res[0].substring(1,res[0].length))+300;
                     } else {
-                        tmp = 300;
+                        if (res[0][0] === "m") {
+                            tmp = 0.13*150+300;
+                        } else {
+                            tmp = 300;
+                        }
                     }
                 }
 
@@ -543,6 +559,51 @@ function SVGTransformation(opts) {
                 document.getElementById("message_trans").textContent=s;
             }
 
+            if (trans.substring(0,2) === "S-"){
+                X = this.attr("cx") + x;
+                if (X<450&&X>150){
+                    this.attr({cx: X});
+                }
+
+                tf ="S-1.0,1.0,T"+(X-300)+",0";
+                copy.transform(tf);
+                s = "horizontal Spiegeln an x="+(X-300);
+                document.getElementById("message_trans").textContent=s;
+            }
+
+            if (trans.substring(0,2) === "S1"){
+                X = this.attr("cx") + x;
+                if (X<450&&X>150){
+                    this.attr({cx: X});
+                }
+                tf ="S1.0,-1.0,T0,"+(X-300);
+                copy.transform(tf);
+                s = "horizontal Spiegeln an y="+(300-X);
+                document.getElementById("message_trans").textContent=s;
+            }
+
+            if (trans.substring(0,9) === "m, 1, 0, "){
+                X = this.attr("cx") + x;
+                if (X<450&&X>150){
+                    this.attr({cx: X});
+                }
+                tf ="m, 1, 0," +(X-300)/150+", 1, 0, 0";
+                copy.transform(tf);
+                s = "Verzerren um sx="+(300-X)/150;
+                document.getElementById("message_trans").textContent=s;
+            }
+
+            if (trans.substring(0,9) === "m, 1, 0.1"){
+                X = this.attr("cx") + x;
+                if (X<450&&X>150){
+                    this.attr({cx: X});
+                }
+                tf ="m, 1, " +(X-300)/150+",0, 1, 0, 0";
+                copy.transform(tf);
+                s = "Verzerren um sy="+(300-X)/150;
+                document.getElementById("message_trans").textContent=s;
+            }
+
 
 
             update_NodeList_SVG_xlink(objlist,"SVGSourceTransformation");
@@ -558,9 +619,102 @@ function SVGTransformation(opts) {
   update_NodeList_SVG_xlink(objlist,"SVGSourceTransformation");
   return (r) 
 }
+/// --------------------- ANIMATION -----------------------
+/// ----------------------------------------------------
+function SVGAnimation(opts) {
+    var r = typeof(opts.r) === "object" ? opts.r : null,
+        idname = typeof(opts.id) === "string" ? opts.id : null,
+        x = typeof(opts.x) === "number" ? opts.x : null,
+        y = typeof(opts.y) === "number" ? opts.y : null,
+        SObj = null,
+        nodes = null,
+        controls = null,
+        discattr = {fill: "#fff", stroke: "none"},
+        x0 = 80,
+        y0 = 110,
+        dx = 166,
+        dy = 205,
+        tmp = 0.0,
+        objlist = [];
+
+    if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
+        r =  Raphael(idname, x, y);
+    } 
+   
+   nodes = r.canvas.childNodes; 
+   // Alles Löschen bis auf die ersten beiden
+   while (nodes.length > 2){
+    r.canvas.removeChild(nodes[2]);
+   }
+   r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+   
+   
+   SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
+   
+   // createOn(SObj.node,'animate',{
+   //    attributeType:'XML', begin:'click',
+   //    attributeName:'x', from: x0, to:'630',
+   //    dur:'1.3s', fill:'freeze'
+   //  });
+
+   // createOn(SObj.node,'animate',{
+   //    attributeType:'XML', begin:'click',
+   //    attributeName:'y', from: y0, to:'630',
+   //    dur:'3.3s', fill:'freeze'
+   //  });
+
+   // createOn(SObj.node,'animate',{
+   //    attributeType:'XML', begin:'click',
+   //    attributeName:'width', from: dx, to:2*dx,
+   //    dur:'3.3s', fill:'freeze'
+   //  });
+
+   // createOn(SObj.node,'animate',{
+   //    attributeType:'XML', begin:'click',
+   //    attributeName:'height', from: dy, to:dy/2,
+   //    dur:'2.3s', fill:'freeze'
+   //  });
+
+   // createOn(SObj.node,'animateTransform',{
+   //     begin:'click', attributeType:'XML',
+   //    attributeName:'transform', type:'scale', from: '1', to:'4',
+   //    dur:'3.3s', fill:'freeze'
+   //  });
+
+    // createOn(SObj.node,'animateTransform',{
+    //    begin:'click', attributeType:'XML',
+    //   attributeName:'transform', type:'scale', from: '1', to:'4 2',
+    //   additive: 'sum', dur:'3.3s', fill:'freeze'
+    // });
+
+    createOn(SObj.node,'animateTransform',{
+       begin:'click', attributeType:'XML',
+      attributeName:'transform', type:'rotate', from: '0', to:'180',
+      additive: 'sum', dur:'3.3s', fill:'freeze'
+    });
+
+   objlist.push(SObj);
+   SObj.node.removeAttributeNode(SObj.node.getAttributeNode("style"));
+   update_NodeList_SVG_xlink(objlist,"SVGSourceAnimation");
+   return (r) 
+}
+
+
+
+
+
 
 // ----------------------------------------------------------------------------
 // Callback Functions for Buttons
+
+function buttonActionanimation(event){
+    if ( event.preventDefault ) { event.preventDefault()};  
+    event.returnValue = false;  
+    var content = document.getElementById("SVGSourceAnimation").textContent;
+
+    var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
+    var newWindow=window.open(uriContent, 'animation.svg');
+}
 
 function buttonActiontransformation(event){
     if ( event.preventDefault ) { event.preventDefault()};  
@@ -568,10 +722,8 @@ function buttonActiontransformation(event){
     var content = document.getElementById("SVGSourceTransformation").textContent;
 
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
-    var newWindow=window.open(uriContent, 'kreis.svg');
+    var newWindow=window.open(uriContent, 'transformation.svg');
 }
-
-
 
 function buttonActionkreis(event){
     if ( event.preventDefault ) { event.preventDefault()};  
@@ -670,10 +822,21 @@ window.onload = function () {
     SVGKurve();
     SVGKurve2();
     rtransformation = SVGTransformation({id:"SVGTransformation",x:620,y:420});
+    ranimation = SVGAnimation({id:"SVGAnimation",x:620,y:420});
     
 
     //Register Buttons
-    var button = document.getElementById("buttontransformation");
+
+    
+
+    var button = document.getElementById("buttonanimation");
+    if(button.addEventListener){
+             button.addEventListener("click", buttonActionanimation);
+    } else {
+             button.attachEvent("click", buttonActionanimation);
+    }
+
+    button = document.getElementById("buttontransformation");
     if(button.addEventListener){
              button.addEventListener("click", buttonActiontransformation);
     } else {

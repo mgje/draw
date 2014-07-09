@@ -53,7 +53,7 @@
                     <li><a href="#Kurve2">Kurve2</a></li>
                     <li><a href="#Transformation">Transform</a></li>
                     <li><a href="#Animation">Animation</a></li>
-                    <li><a href="#Laufschrift">Laufschrift</a></li>
+                    <!-- <li><a href="#Laufschrift">Laufschrift</a></li> -->
                     <li><a href="#Diagramm">Diagramm</a></li>
                 </ul>
             </nav>
@@ -187,7 +187,8 @@
                                 <li><a href="#Trans" matrix="R-45" message="Drehen um -45 Grad">D -</a></li>
                                 <li><a href="#Trans" matrix="S-1.0,1.0" message="horizontal spiegeln">S x</a></li>
                                 <li><a href="#Trans" matrix="S1.0,-1.0" message="vertikal spiegeln">S y</a></li>
-                                <li><a href="#Trans" matrix="m, 1, 0, 0.13, 1, 0, 0" message="Verzerren">Verz</a></li>
+                                <li><a href="#Trans" matrix="m, 1, 0, 0.13, 1, 0, 0" message="Verzerren x-Richtung">V x</a></li>
+                                <li><a href="#Trans" matrix="m, 1, 0.13, 0, 1, 0, 0" message="Verzerren y-Richtung">V y</a></li>
                             </ul>
                         </nav>
                         <code class="svg"><div class="highlight"><pre id="SVGSourceTransformation" class="pre-wrap">   
@@ -201,17 +202,40 @@
 
          <section id="Animation" class="experiment-layer">
             <div class="section_wrapper">
-                <h1>Animation</h1>
-                <p>Welcome to draw SVG</p>
+                <h2>Animation</h2>
+                <p id="message_an">Starten ! Auf den Biber klicken </p>
+                <div class="code-sample">
+                    <div class="g--half">
+                        <div id="SVGAnimation" ></div>
+                    </div>
+                    <div class="g--half g--last"> 
+                        <nav id="choose-animation" class="second-navdrawer-container" animation="n">
+                            <h4>Choose NUMBER</h4>
+                            <ul>
+                                <!-- <li><a class="selected" href="#Anima" matrix="{}" message="keine Transformation">Start</a></li> -->
+                                <li ><a class="selected" href="#Anima" animation="pos" >Position</a></li>
+                                <li><a href="#Anima" animation="size" >Grösse</a></li>
+                                <li><a href="#Anima" animation="rot" >Drehen</a></li>
+                                <li><a href="#Anima" animation="color" >Farbe</a></li>
+                                <li><a href="#Anima" animation="combined" >Kombiniert</a></li>
+                                
+                            </ul>
+                        </nav>
+                        <code class="svg"><div class="highlight"><pre id="SVGSourceAnimation" class="pre-wrap">   
+                        
+                        </pre></div></code>
+                    </div>
+                </div>
+                <a id="buttonanimation" href="#0" class="button--primary">Download</a>                
             </div>
         </section>
 
-        <section id="Laufschrift" class="experiment-layer">
+       <!--  <section id="Laufschrift" class="experiment-layer">
             <div class="section_wrapper">
                 <h1 >Laufschrift</h1>
                 <p>Welcome to draw SVG</p>
             </div>
-        </section>
+        </section> -->
 
         <section id="Diagramm" class="experiment-layer">
             <div class="section_wrapper">
@@ -236,14 +260,14 @@
         <h2 class="subsection-title"><strong class="subsection-number">#08</strong> Grid</h2>
 
 
-        <div class="clear demo">
+        <!-- <div class="clear demo">
             <div class="code-sample">
                 <div class="g-medium--half g-wide--1"></div>
                 <div class="g-medium--half g-medium--last g-wide--1"></div>
                 <div class="g-medium--half g-wide--1"></div>
                 <div class="g-medium--half g-medium--last g-wide--1 g-wide--last"></div>
             </div>
-        <div class="clear"></div>
+        <div class="clear"></div> -->
 
         <pre class="auto-gen-code-snippet container"><code>&lt;div class="g-medium--half g-wide--1"&gt;&lt;/div&gt;
         &lt;div class="g-medium--half g-medium--last g-wide--1"&gt;&lt;/div&gt;
