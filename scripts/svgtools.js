@@ -673,8 +673,7 @@ function SVGAnimation(opts) {
     if (dump ==="selected"){ 
        createOn(SObj.node,'animate',{
           attributeType:'XML', begin:'click',
-          repeatCount: 'indefinite',
-          attributeName:'width', from: dx, to:2*dx,
+          attributeName:'width', from: dx, to:2.4*dx,
           dur:'3.3s', fill:'freeze'
         });
     }
@@ -683,9 +682,8 @@ function SVGAnimation(opts) {
     if (dump ==="selected"){ 
        createOn(SObj.node,'animate',{
           attributeType:'XML', begin:'click',
-          repeatCount: 'indefinite',
-          attributeName:'height', from: dy, to:dy/2,
-          dur:'2.3s', fill:'freeze'
+          attributeName:'height', from: dy, to:dy/3,
+          dur:'3.3s', fill:'freeze'
         });
     }
 
@@ -694,7 +692,7 @@ function SVGAnimation(opts) {
 
         createOn(SObj.node,'animateTransform',{
            begin:'click', attributeType:'XML',
-          attributeName:'transform', type:'rotate', from: '0 153 232', to:'267 153 232',
+          attributeName:'transform', type:'rotate', from: '0 153 232', to:'359.9 153 232',
           repeatCount: 'indefinite',
           additive: 'sum', dur:'3.3s', fill:'freeze'
         });
