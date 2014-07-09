@@ -630,11 +630,12 @@ function SVGAnimation(opts) {
         nodes = null,
         controls = null,
         discattr = {fill: "#fff", stroke: "none"},
-        x0 = 80,
-        y0 = 110,
+        x0 = 70,
+        y0 = 130,
         dx = 166,
         dy = 205,
         tmp = 0.0,
+        dump = "",
         objlist = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
@@ -650,59 +651,69 @@ function SVGAnimation(opts) {
    
    
    SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
-   
-   // createOn(SObj.node,'animate',{
-   //    attributeType:'XML', begin:'click',
-   //    attributeName:'x', from: x0, to:'630',
-   //    dur:'1.3s', fill:'freeze'
-   //  });
 
-   // createOn(SObj.node,'animate',{
-   //    attributeType:'XML', begin:'click',
-   //    attributeName:'y', from: y0, to:'630',
-   //    dur:'3.3s', fill:'freeze'
-   //  });
+   dump = document.getElementById("ani_rechts").className;
+   if (dump ==="selected"){  
+       createOn(SObj.node,'animate',{
+          attributeType:'XML', begin:'click',
+          attributeName:'x', from: x0, to:'630',
+          dur:'1.3s', fill:'freeze'
+        });
+    }
 
-   // createOn(SObj.node,'animate',{
-   //    attributeType:'XML', begin:'click',
-   //    attributeName:'width', from: dx, to:2*dx,
-   //    dur:'3.3s', fill:'freeze'
-   //  });
+    dump = document.getElementById("ani_unten").className;
+    if (dump ==="selected"){ 
+       createOn(SObj.node,'animate',{
+          attributeType:'XML', begin:'click',
+          attributeName:'y', from: y0, to:'630',
+          dur:'2.3s', fill:'freeze'
+        });
+    }
+    dump = document.getElementById("ani_dicker").className;
+    if (dump ==="selected"){ 
+       createOn(SObj.node,'animate',{
+          attributeType:'XML', begin:'click',
+          repeatCount: 'indefinite',
+          attributeName:'width', from: dx, to:2*dx,
+          dur:'3.3s', fill:'freeze'
+        });
+    }
 
-   // createOn(SObj.node,'animate',{
-   //    attributeType:'XML', begin:'click',
-   //    attributeName:'height', from: dy, to:dy/2,
-   //    dur:'2.3s', fill:'freeze'
-   //  });
+    dump = document.getElementById("ani_kleiner").className;
+    if (dump ==="selected"){ 
+       createOn(SObj.node,'animate',{
+          attributeType:'XML', begin:'click',
+          repeatCount: 'indefinite',
+          attributeName:'height', from: dy, to:dy/2,
+          dur:'2.3s', fill:'freeze'
+        });
+    }
 
-   // createOn(SObj.node,'animateTransform',{
-   //     begin:'click', attributeType:'XML',
-   //    attributeName:'transform', type:'scale', from: '1', to:'4',
-   //    dur:'3.3s', fill:'freeze'
-   //  });
+    dump = document.getElementById("ani_rot").className;
+    if (dump ==="selected"){ 
 
-    // createOn(SObj.node,'animateTransform',{
-    //    begin:'click', attributeType:'XML',
-    //   attributeName:'transform', type:'scale', from: '1', to:'4 2',
-    //   additive: 'sum', dur:'3.3s', fill:'freeze'
-    // });
-
-    createOn(SObj.node,'animateTransform',{
-       begin:'click', attributeType:'XML',
-      attributeName:'transform', type:'rotate', from: '0', to:'180',
-      additive: 'sum', dur:'3.3s', fill:'freeze'
-    });
+        createOn(SObj.node,'animateTransform',{
+           begin:'click', attributeType:'XML',
+          attributeName:'transform', type:'rotate', from: '0 153 232', to:'267 153 232',
+          repeatCount: 'indefinite',
+          additive: 'sum', dur:'3.3s', fill:'freeze'
+        });
+    }
+      
+    dump = document.getElementById("ani_pfad").className;
+    if (dump ==="selected"){ 
+         createOn(SObj.node,'animateMotion',{
+            path: 'm-50,0 q150,150, 260,0 q150,-240 260,0',
+            repeatCount: 'indefinite',
+           begin:'click', dur:'2.3s', fill:'freeze'
+        });
+    }
 
    objlist.push(SObj);
    SObj.node.removeAttributeNode(SObj.node.getAttributeNode("style"));
    update_NodeList_SVG_xlink(objlist,"SVGSourceAnimation");
    return (r) 
 }
-
-
-
-
-
 
 // ----------------------------------------------------------------------------
 // Callback Functions for Buttons
@@ -796,8 +807,6 @@ function secondNavActionKreise(event){
     rkreise = SVGKreis({r:rkreise});
 }
 
-
-
 function secondNavActionTransformation(event){
     var alist = event.currentTarget.getElementsByTagName("a");
     
@@ -812,6 +821,19 @@ function secondNavActionTransformation(event){
     document.getElementById("message_trans").textContent=event.target.getAttribute("message");
 
     rtransformation = SVGTransformation({r:rtransformation});
+}
+
+function secondNavActionAnimation(event){
+    var alist = event.currentTarget.getElementsByTagName("a");
+    
+ 
+    if (event.target.className==="selected"){
+        event.target.className="";
+    } else {
+        event.target.className="selected";
+    }
+
+    ranimation = SVGAnimation({r:ranimation});
 }
 
 
@@ -892,6 +914,13 @@ window.onload = function () {
              secondnav.addEventListener("click", secondNavActionTransformation);
     } else {
              secondnav.attachEvent("click", secondNavActionTransformation);
+    }
+
+    secondnav = document.getElementById("choose-animation");
+    if(secondnav.addEventListener){
+             secondnav.addEventListener("click", secondNavActionAnimation);
+    } else {
+             secondnav.attachEvent("click", secondNavActionAnimation);
     }
 
 };
