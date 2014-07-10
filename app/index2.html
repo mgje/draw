@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Modul6 Informatik-Biber Auszeichnugssprachen SVG">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+        <title>Beschreiben: Auszeichnungssprachen für die Darstellung digitaler Inhalte</title>
+
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+        <!-- iOS icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/touch/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/touch/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/touch/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="images/touch/apple-touch-icon-57x57-precomposed.png">
+
+        <!-- Tile icon for Win8 (144x144 + tile color) -->
+        <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+        <meta name="msapplication-TileColor" content="#3372DF">
+
+        <!-- Generic Icon -->
+        <link rel="shortcut icon" href="images/touch/touch-icon-57x57.png">
+        
+        <!-- Chrome Add to Homescreen -->
+        <link rel="shortcut icon" sizes="196x196" href="images/touch/touch-icon-196x196.png">
+
+        <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
+        
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="">
+     
+
+        <!-- build:css styles/components/main.min.css -->
+        <link rel="stylesheet" href="styles/h5bp.css">
+        <link rel="stylesheet" href="styles/components/components.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="menu">
+            <nav class="navdrawer-container">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#Start">Start</a></li>
+                    <li><a href="#Kreis">Kreis</a></li>
+                    <li><a href="#Vieleck">Vieleck</a></li>
+                    <li><a href="#Kurve1">Kurve1</a></li>
+                    <li><a href="#Kurve2">Kurve2</a></li>
+                    <li><a href="#Transformation">Transform</a></li>
+                    <li><a href="#Animation">Animation</a></li>
+                    <!-- <li><a href="#Laufschrift">Laufschrift</a></li> -->
+                    <!-- <li><a href="#Diagramm">Diagramm</a></li> -->
+                    <li><a href="#GitHub">Fork Me</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+
+        <main id="Start" class="experiment-layer">
+            <div class="section_wrapper">
+                <h2 >Willkommen bei SVG-Draw </h2>
+
+              <!--   <a href="https://github.com/mgje/draw" class="button--secondary">Fork me on github <img src="images/fork_me.png"/></a> -->
+                <!-- <div class="code-sample"> -->
+                    
+                    <div class="g-wide--1 g-medium--half">
+                        <p> Tutorial Video </p>
+                        <a id="buttonvideo" href="#startvideo" class="button--primary"> > Start</a>
+                    </div>
+
+                    <div class="g-wide--3 g-wide--last g-medium--half g--last"><p>
+                        Dieses Tutorial zeigt, wie Kreise, Linien und Kurve gezeichnet 
+                    und animiert werden können. Die erstellten SVG Zeichnungen können als Text
+                    kopiert oder mit Hilfe des Download-Button in einen neuen Browser-Tab geladen werden.</p>
+                    
+                    </div>
+               <!--  </div> -->
+                
+                
+                <video id="video1" width="1280" height="660" controls style="max-width:110%;">
+                    <source src="movies/biber1.m4v" type="video/mp4" />
+                    <source src="movies/biber1.webm" type="video/webm" />
+                    Your browser does not support the <code>video</code> element.
+                </video>
+            </div>
+            
+        </main>
+
+          
+
+        <section id="Kreis" class="experiment-layer">
+            <div class="section_wrapper">
+                <h2>Kreise - Circle </h2>
+                <p>Bewegen Sie einen Stützpunkt (weiss)</p>
+                <div class="code-sample">
+                    <div class="g--half">
+                        <div id="SVGKreis" ></div>
+                    </div>
+                    <div class="g--half g--last"> 
+                        <nav id="choose-AnzKreise" class="second-navdrawer-container" data-kreise="1">
+                            <h4>Choose NUMBER</h4>
+                            <ul>
+                                <li ><a class="selected" href="#1Kreis" anz-kreis="1" >ein</a></li>
+                                <li><a href="#1Kreis" anz-kreis="2">zwei</a></li>
+                                <li><a href="#1Kreis" anz-kreis="3">drei</a></li>
+                                <li><a href="#1Kreis" anz-kreis="4">vier</a></li>
+                                <li><a href="#1Kreis" anz-kreis="5">fünf</a></li>
+                                <li><a href="#1Kreis" anz-kreis="10">zehn</a></li>
+                                <li><a href="#1Kreis" anz-kreis="20">zwanzig</a></li>
+                                <li class="zentral"><b>Kreise</b></li>
+                            </ul>
+                        </nav>
+                        <code class="svg"><div class="highlight"><pre id="SVGSourceKreis" class="pre-wrap">   
+                        
+                        </pre></div></code>
+                    </div>
+                </div>
+                <a id="buttonkreis" href="#0" class="button--primary">Download Kurve</a>                     
+            </div>
+        </section>
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "name": "draw",
+  "launch_path": "/index.html",
+  "description": "draw",
+  "icons": {
+    "128": "/images/touch/icon-128x128.png"
+  },
+  "developer": {
+    "name": "martin guggisberg",
+    "url": ""
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "de",
+  "permissions": {
+  },
+  "locales": {
+    "de": {
+      "name": "draw",
+      "description": "TO DO"
+    }
+  }
+}
