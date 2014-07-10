@@ -567,7 +567,7 @@ function SVGTransformation(opts) {
 
                 tf ="S-1.0,1.0,T"+(X-300)+",0";
                 copy.transform(tf);
-                s = "horizontal Spiegeln an x="+(X-300);
+                s = "Horizontal spiegeln an x="+(X-300);
                 document.getElementById("message_trans").textContent=s;
             }
 
@@ -578,7 +578,7 @@ function SVGTransformation(opts) {
                 }
                 tf ="S1.0,-1.0,T0,"+(X-300);
                 copy.transform(tf);
-                s = "horizontal Spiegeln an y="+(300-X);
+                s = "Horizontal spiegeln an y="+(300-X);
                 document.getElementById("message_trans").textContent=s;
             }
 
