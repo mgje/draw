@@ -5,19 +5,18 @@ Interaktive Webapp zum  *[Informatik-Biber Lehrmittel (Schweiz)](http://informat
 
 **Auszeichnungssprachen - wie lassen sich digitale Inhalte beschreiben?**
 
-*[gleich Testen / Start](http://mgje.github.io/Crypto/exp7/)*
+*[gleich Testen / Start](http://mgje.github.io/draw/)*
 
-*[Direkter Download Link für offline Nutzung](http://mgje.github.io/Crypto/DOWNLOAD/M3_interaktiv_verschluesseln.zip)*
+*[Direkter Download Link für offline Nutzung](https://github.com/mgje/draw/archive/gh-pages.zip)
 
-Die verschiedenen [interaktiven Webanwendungen zur Verschlüsselung](http://mgje.github.io/Crypto/exp1/) wurden für das Lehrmittel zum Biber-Wettbewerb
-entwickelt. Finanziert wurde dieses Entwicklungsprojekt durch ICT-Berufsbildung, die HaslerStiftung und SWITCH.
+Die [WebApp](http://mgje.github.io/draw/) wurden für das Informatik-Biber Lehrmittel (Schweiz)
+entwickelt. Finanziert wurde dieses Projekt durch ICT-Berufsbildung, die HaslerStiftung und SWITCH.
 
 Das [Lehrmittel zum Biber-Wettbewerb](http://informatik-biber.ch/musik/) ist ein vom [SVIA](http://svia-ssie-ssii.ch/), dem Schweizerischen Verein für Informatik in der Ausbildung, initiiertes Projekt und hat die Förderung der Informatik auf der Sekundarstufe I zum Ziel.
 Das Lehrmittel bringt Jugendlichen auf niederschwellige Weise Konzepte der Informatik näher und zeigt dadurch auf, dass die Informatikbranche vielseitige und spannende Berufsperspektiven bietet.
 
 Lehrpersonen der Sekundarstufe I und weiteren Interessierten steht das Lehrmittel als Ressource zur Vor- und Nachbereitung des Wettbewerbs kostenlos zur Verfügung.
 
-[Lehrmittel zum Informatik-Biber](http://informatik-biber.ch/musik/)
 
 ## Verwendete Technologien
 
