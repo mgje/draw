@@ -132,6 +132,7 @@ button.menu img {
 .experiment-layer{
     /*height: 768px;*/
     height: 1200px;
+   /* height: 1600px;*/
     padding: 50px 0 0 0;
     
     -webkit-backface-visibility: hidden;
@@ -332,16 +333,6 @@ main {
     padding: 60px 16px 16px 16px;
     min-height: 100%;
 }
-
-
-
-
-
-
-
-
-
-
 
 /** Larger Screens - desktops and tablets **/
 @media all and (min-device-width: 1200px) {
