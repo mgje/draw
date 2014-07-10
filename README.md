@@ -1,12 +1,9 @@
 draw - SVG interaktiv
 =====================
 
-Interaktive Webapp zum Informatik-Biber Lehrmittel *[Informatik-Biber Lehrmittel (Schweiz)](http://informatik-biber.ch/lehrmittel/)*
+Interaktive Webapp zum  *[Informatik-Biber Lehrmittel (Schweiz)](http://informatik-biber.ch/lehrmittel/)*
 
 **Auszeichnungssprachen - wie lassen sich digitale Inhalte beschreiben?**
-
-
-**Verschlüsseln – damit geheime Daten  geheim bleiben**
 
 *[gleich Testen / Start](http://mgje.github.io/Crypto/exp7/)*
 
