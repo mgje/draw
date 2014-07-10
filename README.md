@@ -12,10 +12,10 @@ Interaktive Webapp zum  *[Informatik-Biber Lehrmittel (Schweiz)](http://informat
 Die [WebApp](http://mgje.github.io/draw/) wurden für das Informatik-Biber Lehrmittel (Schweiz)
 entwickelt. Finanziert wurde dieses Projekt durch ICT-Berufsbildung, die HaslerStiftung und SWITCH.
 
-Das [Lehrmittel zum Biber-Wettbewerb](http://informatik-biber.ch/musik/) ist ein vom [SVIA](http://svia-ssie-ssii.ch/), dem Schweizerischen Verein für Informatik in der Ausbildung, initiiertes Projekt und hat die Förderung der Informatik auf der Sekundarstufe I zum Ziel.
-Das Lehrmittel bringt Jugendlichen auf niederschwellige Weise Konzepte der Informatik näher und zeigt dadurch auf, dass die Informatikbranche vielseitige und spannende Berufsperspektiven bietet.
+Das [Lehrmittel zum Biber-Wettbewerb](http://informatik-biber.ch/lehrmittel/) ist ein vom [SVIA](http://svia-ssie-ssii.ch/), dem Schweizerischen Verein für Informatik in der Ausbildung, initiiertes Projekt und hat die Förderung der Informatik auf der Sekundarstufe I zum Ziel.
+Das Lehrmittel bringt Jugendlichen fundamentale Konzepte der Informatik näher und zeigt dadurch auf, dass Informatikberufe vielseitig und spannend sind. 
 
-Lehrpersonen der Sekundarstufe I und weiteren Interessierten steht das Lehrmittel als Ressource zur Vor- und Nachbereitung des Wettbewerbs kostenlos zur Verfügung.
+Lehrpersonen und weiteren Interessierten steht das [Lehrmittel](http://informatik-biber.ch/lehrmittel/) kostenlos zur Verfügung.
 
 
 ## Verwendete Technologien
