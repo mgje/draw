@@ -36,6 +36,21 @@ a:hover {
     color: #06e;
 }
 
+/*mgu things TODO also for mobile size*/
+.textlink a {
+    color: #00e;
+}
+
+.textlink a:visited {
+    color: #551a8b;
+}
+
+.textlink a:hover {
+    color: #06e;
+}
+
+/*End */
+
 /*
  * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
  */
