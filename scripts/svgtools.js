@@ -775,6 +775,22 @@ function buttonActionkurve(event){
     var newWindow=window.open(uriContent, 'kurve.svg');
 }
 
+
+function buttonActionvideo(event){
+    if ( event.preventDefault ) { event.preventDefault()};  
+    event.returnValue = false;  
+       var video = document.getElementById("video1");
+       var button = document.getElementById("buttonvideo");
+       if (video.paused) {
+          video.play();
+          button.textContent = "||  Pause";
+       } else {
+          video.pause();
+          button.textContent = "> Start";
+       }
+    
+}
+
 function secondNavAction(event){
     var alist = event.currentTarget.getElementsByTagName("a");
     
@@ -892,6 +908,14 @@ window.onload = function () {
     } else {
              button.attachEvent("click", buttonActionkurve);
     }
+
+    button = document.getElementById("buttonvideo");
+    if(button.addEventListener){
+             button.addEventListener("click", buttonActionvideo);
+    } else {
+             button.attachEvent("click", buttonActionvideo);
+    }
+
 
     var secondnav = document.getElementById("choose-figure");
     if(secondnav.addEventListener){
