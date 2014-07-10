@@ -13,7 +13,7 @@ Die [WebApp](http://mgje.github.io/draw/) wurden für das Informatik-Biber Lehrm
 entwickelt. Finanziert wurde dieses Projekt durch ICT-Berufsbildung, die HaslerStiftung und SWITCH.
 
 Das [Lehrmittel zum Biber-Wettbewerb](http://informatik-biber.ch/lehrmittel/) ist ein vom [SVIA](http://svia-ssie-ssii.ch/), dem Schweizerischen Verein für Informatik in der Ausbildung, initiiertes Projekt und hat die Förderung der Informatik auf der Sekundarstufe I zum Ziel.
-Das Lehrmittel bringt Jugendlichen fundamentale Konzepte der Informatik näher und zeigt dadurch auf, dass Informatikberufe vielseitig und spannend sind. 
+Das Lehrmittel bringt Jugendlichen fundamentale Konzepte der Informatik näher und zeigt dadurch, dass Informatikberufe vielseitig und spannend sind. 
 
 
 Lehrpersonen der Sekundarstufe I und weiteren Interessierten steht das Lehrmittel kostenlos zur Verfügung.
@@ -22,7 +22,7 @@ Lehrpersonen der Sekundarstufe I und weiteren Interessierten steht das Lehrmitte
 ## Verwendete Technologien
 
 - [Raphaël](http://raphaeljs.com/) JavaScript Bibliothek für Vektorgrafik
-- [Web Starter Kit](https://developers.google.com/web/fundamentals/tools/)
+- [Web Starter Kit](https://developers.google.com/web/fundamentals/tools/) Multi-Device Tools von Google
 
 
 ## Weiterführende Verweise
