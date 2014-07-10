@@ -1,8 +1,7 @@
 draw - SVG interaktiv
 =====================
 
-Interaktive Webapp zum Informatik-Biber Lehrmittel
-*[Link zur Informatik-Biber Webseite (Schweiz)](http://informatik-biber.ch/lehrmittel/)*
+Interaktive Webapp zum Informatik-Biber Lehrmittel *[Informatik-Biber Lehrmittel (Schweiz)](http://informatik-biber.ch/lehrmittel/)*
 
 **Auszeichnungssprachen - wie lassen sich digitale Inhalte beschreiben?**
 
