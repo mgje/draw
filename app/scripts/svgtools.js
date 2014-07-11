@@ -226,7 +226,8 @@ function SVGKreis(opts) {
    controls = r.set(circles);
 
    controls.drag(move, up);
-                
+   
+   curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));         
    update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
    return (r);     
  }
