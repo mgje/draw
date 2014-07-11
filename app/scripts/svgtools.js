@@ -123,7 +123,7 @@ function SVGKreis(opts) {
         cir.idnum=i;
         list_cir.push(cir);
 
-        cir.update = udatefunction;
+        cir.update = updatefunction;
 
         cir = r.circle(x0, y0-r0,5).attr(discattr2);
         cir.idnum=i;
@@ -212,7 +212,7 @@ function SVGKreis(opts) {
             curve.attr({path: path});
             update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
         };
-        
+
    for(i = 0, num = data.length; i < num; i+=1) {
         var cir = r.circle(data[i].x, data[i].y, 5).attr(discattr);
         circles.push(cir);
