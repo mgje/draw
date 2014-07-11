@@ -180,17 +180,16 @@ button.menu img {
     z-index: 1;
     position: fixed;
     top: 0;
-    display: block;
-    
-   /* bottom: 0;*/
-   /* width: 250px;*/
-    width: 100%;
+    /*display: block;*/
+    /*bottom: 0;*/
+    width: 250px;
+    /*width: 100%;*/
     height: 100%;
     /*background-color: #3367D6;*/
     background-color: #CF423A;
     color: #fefefe;
-    -webkit-transform: translate(-250px, 0);
-    transform: translate(-250px, 0);
+    -webkit-transform: translate(-300px, 0);
+    transform: translate(-300px, 0);
     overflow-y: scroll;
 }
 
@@ -209,7 +208,7 @@ button.menu img {
 .navdrawer-container ul li a {
     height: 60px;
     padding: 0 20px;
-    /*line-height: 60px;*/
+    line-height: 60px;
 }
 
 .navdrawer-container h4 {
@@ -228,7 +227,9 @@ button.menu img {
     display: block;
     text-decoration: none;
     color: white;
-    transition: background-color 0.2s ease-out;
+    -webkit-transition: background-color 0.2s ease-out;
+          transition: background-color 0.2s ease-out;
+          white-space: nowrap;
 }
 
 .navdrawer-container ul li {
@@ -282,10 +283,13 @@ button.menu img {
 }
 
 
-.app-bar, .second-navdrawer-container, main {
-    /* transition: -webkit-transform 0.3s ease-out; */
+/*.app-bar, .second-navdrawer-container, main {
+    transition: -webkit-transform 0.3s ease-out; 
     transition: transform 0.3s ease-out;
-}
+    display: none;
+}*/
+
+
 
 .second-navdrawer-container h4,
 .second-navdrawer-container ul li a {
@@ -311,7 +315,7 @@ button.menu img {
     text-decoration: none;
     color: white;
 
-    transition: background-color 0.2s ease-out;
+/*    transition: background-color 0.2s ease-out;*/
 }
 
 .second-navdrawer-container ul li {
@@ -356,6 +360,7 @@ main {
 @media all and (min-width: 990px) {
   .app-bar {
     position: relative;
+    display: none;
   }
 
   .app-bar.open,
@@ -401,11 +406,12 @@ main {
         display: block;
         margin-top: 130px;
         /* margin-top: 60px; */
+
     }
   
  .navdrawer-container {
     /*mgu change*/
-    /*position: relative;*/
+    position: fixed;
     width: 100%;
     height: auto;
     margin-top: 130px;
@@ -414,6 +420,7 @@ main {
     -webkit-transition: none;
             transition: none;
     overflow-y: auto;
+
   }
 
     .navdrawer-container h4 {
@@ -480,6 +487,7 @@ main {
     .navdrawer-container {
         /*position: relative;*/
         margin-top: 0;
+
     }
 
     .second-navdrawer-container {
