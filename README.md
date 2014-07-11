@@ -14,6 +14,9 @@ Interactive WebApp for  *[Informatik-Biber Lehrmittel (Schweiz)](http://informat
 - Sass gem
 - Gulp
 
+```
+$ sudo npm install --global gulp
+```
 
 
 [Tutorial: How to install these tools (Google)](https://developers.google.com/web/fundamentals/tools/setup/setup_kit)
@@ -21,14 +24,14 @@ Interactive WebApp for  *[Informatik-Biber Lehrmittel (Schweiz)](http://informat
 ## Build  Webapp
 
 ```
-sudo npm install
-gulp
+$ sudo npm install
+$ gulp
 ```
 
 ## Test Webapp
 
 ```
-gulp serve
+$ gulp serve
 ```
 
 ## Used Technologies
