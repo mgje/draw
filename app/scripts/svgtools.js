@@ -101,6 +101,16 @@ function SVGKreis(opts) {
     s_n_K = document.getElementById("choose-AnzKreise").getAttribute("data-kreise");    
     n_K = Number.parseInt(s_n_K); 
 
+    var updatefunction = function (x, y) {
+            var X = this.attr("cx") + x,
+                Y = this.attr("cy") + y,
+                YR = -circles[this.idnum].attr("r")+Y;
+            this.attr({cx: X, cy: Y});
+            circles[this.idnum].attr({cx: X, cy: Y});
+            list_r[this.idnum].attr({cx: X, cy: YR});
+            update_NodeList_SVG(circles,"SVGSourceKreis");
+        };
+
     for(var i = 0; i < n_K; i+=1) {
         x0 = Math.round(Math.random()*300)+150;
         y0 = Math.round(Math.random()*300)+70;
@@ -113,29 +123,21 @@ function SVGKreis(opts) {
         cir.idnum=i;
         list_cir.push(cir);
 
-        cir.update=function (x, y) {
-            var X = this.attr("cx") + x,
-                Y = this.attr("cy") + y,
-                YR = -circles[this.idnum].attr("r")+Y;
-            this.attr({cx: X, cy: Y});
-            circles[this.idnum].attr({cx: X, cy: Y});
-            list_r[this.idnum].attr({cx: X, cy: YR});
-            update_NodeList_SVG(circles,"SVGSourceKreis");
-        };
+        cir.update = udatefunction;
 
         cir = r.circle(x0, y0-r0,5).attr(discattr2);
         cir.idnum=i;
         list_r.push(cir);
-        cir.update=function (x, y) {
-            var Y = this.attr("cy") + y,
-                y0=circles[this.idnum].attr("cy"),
-                r0=y0-Y;
-            circles[this.idnum].attr({r:r0});
-            this.attr({cy: Y});
+        // cir.update=function (x, y) {
+        //     var Y = this.attr("cy") + y,
+        //         y0=circles[this.idnum].attr("cy"),
+        //         r0=y0-Y;
+        //     circles[this.idnum].attr({r:r0});
+        //     this.attr({cy: Y});
 
             
-            update_NodeList_SVG(circles,"SVGSourceKreis");
-        };
+        //     update_NodeList_SVG(circles,"SVGSourceKreis");
+        // };
         
     }
 
@@ -201,11 +203,7 @@ function SVGKreis(opts) {
    path.push('Z');
    curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
 
-   for(i = 0, num = data.length; i < num; i+=1) {
-        var cir = r.circle(data[i].x, data[i].y, 5).attr(discattr);
-        circles.push(cir);
-        cir.idnum=i;
-        cir.update=function (x, y) {
+   var updatefunction = function (x, y) {
             var X = this.attr("cx") + x,
                 Y = this.attr("cy") + y;
             this.attr({cx: X, cy: Y});
@@ -214,6 +212,12 @@ function SVGKreis(opts) {
             curve.attr({path: path});
             update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
         };
+        
+   for(i = 0, num = data.length; i < num; i+=1) {
+        var cir = r.circle(data[i].x, data[i].y, 5).attr(discattr);
+        circles.push(cir);
+        cir.idnum=i;
+        cir.update=updatefunction; 
 
    }
 
