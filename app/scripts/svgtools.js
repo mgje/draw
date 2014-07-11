@@ -101,7 +101,7 @@ function SVGKreis(opts) {
     s_n_K = document.getElementById("choose-AnzKreise").getAttribute("data-kreise");    
     n_K = Number.parseInt(s_n_K); 
 
-    var updatefunction = function (x, y) {
+    var updatefunctioncenter = function (x, y) {
             var X = this.attr("cx") + x,
                 Y = this.attr("cy") + y,
                 YR = -circles[this.idnum].attr("r")+Y;
@@ -110,6 +110,17 @@ function SVGKreis(opts) {
             list_r[this.idnum].attr({cx: X, cy: YR});
             update_NodeList_SVG(circles,"SVGSourceKreis");
         };
+
+    var updatefunctionradius =function (x, y) {
+            var Y = this.attr("cy") + y,
+                y0=circles[this.idnum].attr("cy"),
+                r0=y0-Y;
+            circles[this.idnum].attr({r:r0});
+            this.attr({cy: Y});
+
+            
+            update_NodeList_SVG(circles,"SVGSourceKreis");
+        };    
 
     for(var i = 0; i < n_K; i+=1) {
         x0 = Math.round(Math.random()*300)+150;
@@ -123,21 +134,12 @@ function SVGKreis(opts) {
         cir.idnum=i;
         list_cir.push(cir);
 
-        cir.update = updatefunction;
+        cir.update = updatefunctioncenter;
 
         cir = r.circle(x0, y0-r0,5).attr(discattr2);
         cir.idnum=i;
         list_r.push(cir);
-        // cir.update=function (x, y) {
-        //     var Y = this.attr("cy") + y,
-        //         y0=circles[this.idnum].attr("cy"),
-        //         r0=y0-Y;
-        //     circles[this.idnum].attr({r:r0});
-        //     this.attr({cy: Y});
-
-            
-        //     update_NodeList_SVG(circles,"SVGSourceKreis");
-        // };
+        cir.update= updatefunctionradius;
         
     }
 
@@ -800,33 +802,38 @@ function secondNavAction(event){
 
 
 function secondNavActionKreise(event){
-    var alist = event.currentTarget.getElementsByTagName("a");
-    
-    for(var i = 0, num = alist.length; i < num; i+=1) {
-        if (alist[i].className === "selected"){
-            alist[i].className="";
-            break;  // breaks out of loop completely
+    if (event.target.tagName === "A"){
+        var alist = event.currentTarget.getElementsByTagName("a");
+        
+        for(var i = 0, num = alist.length; i < num; i+=1) {
+            if (alist[i].className === "selected"){
+                alist[i].className="";
+                break;  // breaks out of loop completely
+            }
         }
+        event.target.className="selected";
+        event.currentTarget.setAttribute("data-kreise",event.target.getAttribute("anz-kreis"));
+        rkreise = SVGKreis({r:rkreise});
     }
-    event.target.className="selected";
-    event.currentTarget.setAttribute("data-kreise",event.target.getAttribute("anz-kreis"));
-    rkreise = SVGKreis({r:rkreise});
 }
 
 function secondNavActionTransformation(event){
-    var alist = event.currentTarget.getElementsByTagName("a");
-    
-    for(var i = 0, num = alist.length; i < num; i+=1) {
-        if (alist[i].className === "selected"){
-            alist[i].className="";
-            break;  // breaks out of loop completely
-        }
-    }
-    event.target.className="selected";
-    event.currentTarget.setAttribute("transformation",event.target.getAttribute("matrix"));
-    document.getElementById("message_trans").textContent=event.target.getAttribute("message");
+    if (event.target.tagName === "A"){
 
-    rtransformation = SVGTransformation({r:rtransformation});
+        var alist = event.currentTarget.getElementsByTagName("a");
+        
+        for(var i = 0, num = alist.length; i < num; i+=1) {
+            if (alist[i].className === "selected"){
+                alist[i].className="";
+                break;  // breaks out of loop completely
+            }
+        }
+        event.target.className="selected";
+        event.currentTarget.setAttribute("transformation",event.target.getAttribute("matrix"));
+        document.getElementById("message_trans").textContent=event.target.getAttribute("message");
+
+        rtransformation = SVGTransformation({r:rtransformation});
+    }
 }
 
 function secondNavActionAnimation(event){
