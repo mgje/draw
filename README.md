@@ -18,11 +18,16 @@ Das Lehrmittel bringt Jugendlichen fundamentale Konzepte der Informatik näher u
 
 Lehrpersonen der Sekundarstufe I und weiteren Interessierten steht das Lehrmittel kostenlos zur Verfügung.
 
-## Build
+## Used Tools
+- node.js
 
-- sudo npm install
-- gulp
 
+## Build  Webapp
+
+```
+sudo npm install
+gulp
+```
 
 ## Verwendete Technologien
 
