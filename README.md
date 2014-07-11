@@ -35,16 +35,15 @@ gulp
 gulp serve
 ```
 
-## Verwendete Technologien
+## Used Technologies
 
 - [Raphaël](http://raphaeljs.com/) JavaScript Bibliothek für Vektorgrafik
 - [Web Starter Kit](https://developers.google.com/web/fundamentals/tools/) Multi-Device Tools von Google
+- [gulpjs](https://github.com/gulpjs/gulp) Build system
+
+## Related Projects
 
 
-## Weiterführende Verweise
-
-
-- folgen
 - [Ready Set Raphael](http://www.readysetraphael.com/)
 - [Filter Effects for Raphael.js](http://chrismichaelscott.github.io/fraphael/)
 
