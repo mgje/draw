@@ -67,6 +67,22 @@ gulp.task('copy', function () {
     .pipe($.size({title: 'copy'}));
 });
 
+// Copy JS lib 
+gulp.task('copyLib', function () {
+  return gulp.src(['app/lib/**'])
+    .pipe(gulp.dest('dist/lib'))
+    .pipe($.size({title: 'copy lib'}));
+});
+
+// Copy JS movies
+gulp.task('copyMovies', function () {
+  return gulp.src(['app/movies/**'])
+    .pipe(gulp.dest('dist/movies'))
+    .pipe($.size({title: 'copy movies'}));
+});
+
+
+
 // Copy Web Fonts To Dist
 gulp.task('fonts', function () {
   return gulp.src(['app/fonts/**'])
@@ -178,7 +194,7 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
+  runSequence('styles', ['jshint', 'html', 'images', 'fonts','copyLib','copyMovies','copy',''], cb);
 });
 
 // Run PageSpeed Insights

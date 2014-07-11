@@ -1,25 +1,25 @@
 {
-  "version": "0.2.0",
-  "name": "draw",
+  "version": "1.0.0",
+  "name": "Web Starter Kit",
   "launch_path": "/index.html",
-  "description": "draw",
+  "description": "A front-end template that helps you build fast, modern mobile web apps.",
   "icons": {
     "128": "/images/touch/icon-128x128.png"
   },
   "developer": {
-    "name": "martin guggisberg",
+    "name": "",
     "url": ""
   },
   "installs_allowed_from": [
     "*"
   ],
-  "default_locale": "de",
+  "default_locale": "en",
   "permissions": {
   },
   "locales": {
-    "de": {
-      "name": "draw",
-      "description": "TO DO"
+    "en": {
+      "name": "Web Starter Kit",
+      "description": "A front-end template that helps you build fast, modern mobile web apps."
     }
   }
 }
