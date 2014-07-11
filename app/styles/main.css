@@ -349,6 +349,12 @@ button.menu img {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+
+.g-small-1-colum{
+  margin-right: 5%;
+  width: 80%;
+}
+
 /*mgu secon drawer*/
 
 main {
@@ -356,9 +362,18 @@ main {
     /* Height of the header */
     /*padding: 60px 16px 16px 16px;
     min-height: 100%;*/
-    display: none;
+    
 
 }
+
+main video, #buttonvideo {
+  display: none;
+
+}
+
+body {
+        overflow-y: scroll;
+    }
 
 /** Larger Screens - desktops and tablets **/
 @media all and (min-width: 990px) {
@@ -482,12 +497,17 @@ main {
         max-width: 864px;
         padding-top: 0;
         min-height: initial;
-        display: block;
+        
     }
 
-   /* body {
-        overflow-y: scroll;
-    }*/
+    main video, #buttonvideo {
+      display: block;
+    }
+
+    
+    body {
+        overflow-y: hidden;
+    }
 
     .navdrawer-container {
         /*position: relative;*/
@@ -500,6 +520,12 @@ main {
         margin-top: 0;
         display: block;
     }
+
+    .g-small-1-colum{
+        margin-right: 0;
+
+    }
+
 }
 
 @font-face {
