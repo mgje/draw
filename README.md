@@ -29,6 +29,12 @@ sudo npm install
 gulp
 ```
 
+## Test Webapp
+
+```
+gulp serve
+```
+
 ## Verwendete Technologien
 
 - [Raphaël](http://raphaeljs.com/) JavaScript Bibliothek für Vektorgrafik
