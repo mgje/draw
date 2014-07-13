@@ -1,33 +1,40 @@
+window.onload = function () {
+    'use strict';
+
 ////---------- Globals ---------
 
 var rvieleck = null,
     rtransformation = null,
     rkreise = null,
-    ranimation = null;
+    ranimation = null,
+    rkurve = null,
+    rkurve2 = null,
+    rdiagramm = null,
+    button = null,
+    secondnav = null,
 
 //----------------------------
 // Helper Function
-function move(dx, dy) {
-    this.update(dx - (this.dx || 0), dy - (this.dy || 0));
-    this.dx = dx;
-    this.dy = dy;
-}
+move = function(fdx, fdy) {
+    this.update( fdx - (this.dx || 0), fdy - (this.dy || 0));
+    this.dx = fdx;
+    this.dy = fdy;
+},
 
-function up() {
+up = function() {
     this.dx = this.dy = 0;
-}
+},
 
 
 // Create Elmente in with namespace bla bla
-function createOn(el,name,attrs){
+createOn = function(el,name,attrs){
     var e = document.createElementNS(el.namespaceURI,name);      
     for (var lname in attrs) e.setAttribute(lname,attrs[lname]);
     el.appendChild(e);
     return e;
-}
+},
 
-
-function outerHTML(node){
+outerHTML = function(node){
     // if IE, Chrome take the internal method otherwise build one
   return node.outerHTML || (
       function(n){
@@ -37,37 +44,34 @@ function outerHTML(node){
           div = null;
           return h;
       })(node);
-  } 
-
- function update_Kurve_SVG(r,id,idelment){
+}, 
+update_Kurve_SVG = function(r,id,idelment){
         var s = S('<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">').escapeHTML().s,
             n = r.getById(id).node;
         //n.removeAttributeNode(n.getAttributeNode("style"));
         s += S(outerHTML(n)).escapeHTML().s;
         s += S('</svg>' ).escapeHTML().s;
         document.getElementById(idelment).innerHTML=s;
-    }
-
-function update_NodeList_SVG(nodelist,idelment){
+},
+update_NodeList_SVG = function(nodelist,idelment){
         var s = S('<svg height="420" width="620" xmlns="http://www.w3.org/2000/svg" version="1.1">').escapeHTML().s;
         for(var i = 0, num = nodelist.length; i < num; i+=1) {
             s += S(outerHTML(nodelist[i].node)).escapeHTML().s;
         }
         s += S('</svg>' ).escapeHTML().s;
         document.getElementById(idelment).innerHTML=s;
-    } 
-function update_NodeList_SVG_xlink(nodelist,idelment){
+}, 
+update_NodeList_SVG_xlink = function(nodelist,idelment){
         var s = S('<svg height="420" width="620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">').escapeHTML().s;
         for(var i = 0, num = nodelist.length; i < num; i+=1) {
             s += S(outerHTML(nodelist[i].node)).escapeHTML().s;
         }
         s += S('</svg>' ).escapeHTML().s;
         document.getElementById(idelment).innerHTML=s;
-    }     
+},     
 
 //------------------------------------ SVG Kreis ---------------------------------
-
-function SVGKreis(opts) {
+SVGKreis = function(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
         idname = typeof(opts.id) === "string" ? opts.id : null,
         x = typeof(opts.x) === "number" ? opts.x : null,
@@ -88,7 +92,7 @@ function SVGKreis(opts) {
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
-        r = Raphael(idname);
+        r = new Raphael(idname);
         r.setViewBox(0,0,x,y,false);
         // r.setSize('100%', '50%');
     } 
@@ -102,7 +106,8 @@ function SVGKreis(opts) {
     r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
 
     s_n_K = document.getElementById("choose-AnzKreise").getAttribute("data-kreise");    
-    n_K = Number.parseInt(s_n_K); 
+    // n_K = Number.parseInt(s_n_K); 
+    n_K = parseInt(s_n_K); 
 
     var updatefunctioncenter = function (x, y) {
             var X = this.attr("cx") + x,
@@ -155,9 +160,9 @@ function SVGKreis(opts) {
     update_NodeList_SVG(circles,"SVGSourceKreis");
     return (r); 
 
-}
+},
 //------------------------------------ SVG Vieleck ---------------------------------
-  function SVGVielEck(opts) {
+SVGVielEck = function(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
         idname = typeof(opts.id) === "string" ? opts.id : null,
         x = typeof(opts.x) === "number" ? opts.x : null,
@@ -167,11 +172,12 @@ function SVGKreis(opts) {
         circles =[],
         curve = null,
         controls = null,
+        num = 0,
         path = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
-        r = Raphael(idname);
+        r = new Raphael(idname);
         r.setViewBox(0,0,x,y,false);
         // r.setSize('100%', y);
     } 
@@ -187,7 +193,8 @@ function SVGKreis(opts) {
    // }
 
    var s_anz = document.getElementById("choose-figure").getAttribute("data-ecken");    
-   var anz = Number.parseInt(s_anz); 
+   // var anz = Number.parseInt(s_anz); 
+   var anz = parseInt(s_anz); 
   
    for(var i = 0; i < anz; i+=1) {
     var tmp = {};
@@ -236,12 +243,11 @@ function SVGKreis(opts) {
    curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));         
    update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
    return (r);     
- }
+ },
 
 // ---------------------------- Diagramm -------------------------
-
- function SVGDiagramm() {
-    var  r = Raphael("SVGDiagramm");
+SVGDiagramm = function() {
+    var  r = new Raphael("SVGDiagramm");
     r.setViewBox(0,0,620,420,false);
     // r.setSize('100%', '80%');
 
@@ -268,15 +274,15 @@ function SVGKreis(opts) {
    curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
    curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
    
-   update_Kurve_SVG(r,curve.id,"SVGSourceDiagramm");   
- }
+   update_Kurve_SVG(r,curve.id,"SVGSourceDiagramm");  
+   return (r);  
+ },
 
 //----------------------------------- Kurve ----------------
-
- function SVGKurve(){
+SVGKurve = function(){
     // var r = Raphael("SVGKurve", 620, 420),
 
-    var r = Raphael("SVGKurve");
+    var r = new Raphael("SVGKurve");
         r.setViewBox(0,0,620,420,false);
         // r.setSize('100%', '80%');
 
@@ -346,22 +352,14 @@ function SVGKreis(opts) {
         };
         controls.drag(move, up);
     }
-
-
     curvef(70, 100, 261, 62, 237, 289, 486, 259, "hsb(0, .75, .75)");
-    // curve(170, 100, 210, 100, 230, 200, 270, 200, "hsb(.8, .75, .75)");
-    // curve(270, 100, 310, 100, 330, 200, 370, 200, "hsb(.3, .75, .75)");
-    // curve(370, 100, 410, 100, 430, 200, 470, 200, "hsb(.6, .75, .75)");
-    // curve(470, 100, 510, 100, 530, 200, 570, 200, "hsb(.1, .75, .75)");
-
-    //var ss = document.getElementById("SVGKurve").innerHTML;
-    //document.getElementById("SVGSourceKurve").innerHTML=S(r.getById(2).node.outerHTML).escapeHTML().s;
-}
+    return (r); 
+},
 //--------------- SVGKurve2 ----------------------------------
-function SVGKurve2(){
+SVGKurve2 = function(){
     // var r = Raphael("SVGKurve2", 620, 420),
 
-    var r = Raphael("SVGKurve2");
+    var r = new Raphael("SVGKurve2");
         r.setViewBox(0,0,620,420,false);
         // r.setSize('100%', '80%');
 
@@ -478,13 +476,12 @@ function SVGKurve2(){
         controls.drag(move, up);
     }
   
-
     curvef(70, 100, 261, 62, 75, 349, 271, 220, 402, 122, 320,345, 470, 278, "hsb(.6, .75, .75)");
-    
-}
+    return (r); 
+},
 
 // ----------------------------- Transformation ---------------------------------
-function SVGTransformation(opts) {
+SVGTransformation = function(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
         idname = typeof(opts.id) === "string" ? opts.id : null,
         x = typeof(opts.x) === "number" ? opts.x : null,
@@ -504,7 +501,7 @@ function SVGTransformation(opts) {
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
-        r = Raphael(idname);
+        r = new Raphael(idname);
         r.setViewBox(0,0,x,y,false);
         // r.setSize('100%', '80%');
     } 
@@ -637,10 +634,10 @@ function SVGTransformation(opts) {
   orig.node.removeAttributeNode(orig.node.getAttributeNode("style"));
   update_NodeList_SVG_xlink(objlist,"SVGSourceTransformation");
   return (r); 
-}
+},
 /// --------------------- ANIMATION -----------------------
 /// ----------------------------------------------------
-function SVGAnimation(opts) {
+SVGAnimation = function(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
         idname = typeof(opts.id) === "string" ? opts.id : null,
         x = typeof(opts.x) === "number" ? opts.x : null,
@@ -659,7 +656,7 @@ function SVGAnimation(opts) {
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
-        r = Raphael(idname);
+        r = new Raphael(idname);
         r.setViewBox(0,0,x,y,false);
         // r.setSize('100%', '80%');
     } 
@@ -730,43 +727,47 @@ function SVGAnimation(opts) {
     }
 
    objlist.push(SObj);
-   SObj.node.removeAttributeNode(SObj.node.getAttributeNode("style"));
+
+   tmp = SObj.node.getAttributeNode("style");
+   if (typeof(tmp)=== "string"){
+        SObj.node.removeAttributeNode(tmp);
+    }
    update_NodeList_SVG_xlink(objlist,"SVGSourceAnimation");
    return (r); 
-}
+},
 
 // ----------------------------------------------------------------------------
 // Callback Functions for Buttons
 
-function buttonActionanimation(event){
+buttonActionanimation=function(event){
     if ( event.preventDefault ) { event.preventDefault();}
     event.returnValue = false;  
     var content = document.getElementById("SVGSourceAnimation").textContent;
 
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'animation.svg');
-}
+},
 
-function buttonActiontransformation(event){
+buttonActiontransformation=function (event){
     if ( event.preventDefault ) { event.preventDefault();}  
     event.returnValue = false;  
     var content = document.getElementById("SVGSourceTransformation").textContent;
 
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'transformation.svg');
-}
+},
 
-function buttonActionkreis(event){
+buttonActionkreis= function(event){
     if ( event.preventDefault ) { event.preventDefault();}  
     event.returnValue = false;  
     var content = document.getElementById("SVGSourceKreis").textContent;
 
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'kreis.svg');
-}
+},
 
 
-function buttonActionvieleck(event){
+buttonActionvieleck= function(event){
     if ( event.preventDefault ) { event.preventDefault();}  
     event.returnValue = false;  
     var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
@@ -774,10 +775,9 @@ function buttonActionvieleck(event){
         content += '</svg>';
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'vieleck.svg');
-}
+},
 
-
-function buttonActionkurve2(event){
+buttonActionkurve2= function(event){
     if ( event.preventDefault ) { event.preventDefault();}  
     event.returnValue = false;  
     var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
@@ -785,9 +785,9 @@ function buttonActionkurve2(event){
         content += '</svg>';
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'kurve2.svg');
-}
+},
 
-function buttonActionkurve(event){
+buttonActionkurve= function(event){
     if ( event.preventDefault ) { event.preventDefault();}  
     event.returnValue = false;  
     var content = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">';
@@ -795,10 +795,10 @@ function buttonActionkurve(event){
         content += '</svg>';
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'kurve.svg');
-}
+},
 
 
-function buttonActionvideo(event){
+buttonActionvideo=function(event){
     if ( event.preventDefault ) { event.preventDefault();}  
     event.returnValue = false;  
        var video = document.getElementById("video1");
@@ -811,9 +811,9 @@ function buttonActionvideo(event){
           button.textContent = "> Start";
        }
     
-}
+},
 
-function secondNavAction(event){
+secondNavAction=function(event){
     var alist = event.currentTarget.getElementsByTagName("a");
     
     for(var i = 0, num = alist.length; i < num; i+=1) {
@@ -825,11 +825,10 @@ function secondNavAction(event){
     event.target.className="selected";
     event.currentTarget.setAttribute("data-ecken",event.target.getAttribute("anz-ecken"));
     // SVGVielEck("SVGVieleck",620,420);
-    rvieleck = SVGVielEck({r:rvieleck});
-}
+    rvieleck = new SVGVielEck({r:rvieleck});
+},
 
-
-function secondNavActionKreise(event){
+secondNavActionKreise=function(event){
     if (event.target.tagName === "A"){
         var alist = event.currentTarget.getElementsByTagName("a");
         
@@ -841,11 +840,11 @@ function secondNavActionKreise(event){
         }
         event.target.className="selected";
         event.currentTarget.setAttribute("data-kreise",event.target.getAttribute("anz-kreis"));
-        rkreise = SVGKreis({r:rkreise});
+        rkreise = new SVGKreis({r:rkreise});
     }
-}
+},
 
-function secondNavActionTransformation(event){
+secondNavActionTransformation=function(event){
     if (event.target.tagName === "A"){
 
         var alist = event.currentTarget.getElementsByTagName("a");
@@ -860,11 +859,11 @@ function secondNavActionTransformation(event){
         event.currentTarget.setAttribute("transformation",event.target.getAttribute("matrix"));
         document.getElementById("message_trans").textContent=event.target.getAttribute("message");
 
-        rtransformation = SVGTransformation({r:rtransformation});
+        rtransformation = new SVGTransformation({r:rtransformation});
     }
-}
+},
 
-function secondNavActionAnimation(event){
+secondNavActionAnimation=function(event){
     var alist = event.currentTarget.getElementsByTagName("a");
     
  
@@ -874,25 +873,21 @@ function secondNavActionAnimation(event){
         event.target.className="selected";
     }
 
-    ranimation = SVGAnimation({r:ranimation});
-}
+    ranimation = new SVGAnimation({r:ranimation});
+};
 
-
-window.onload = function () {
-    SVGDiagramm();
-    rkreise = SVGKreis({id:"SVGKreis",x:620,y:420});
-    rvieleck = SVGVielEck({id:"SVGVieleck",x:620,y:420});
-    SVGKurve();
-    SVGKurve2();
-    rtransformation = SVGTransformation({id:"SVGTransformation",x:620,y:420});
-    ranimation = SVGAnimation({id:"SVGAnimation",x:620,y:420});
+// Main Program start hier
     
-
+    rkreise = new SVGKreis({id:"SVGKreis",x:620,y:420});
+    rvieleck = new SVGVielEck({id:"SVGVieleck",x:620,y:420});
+    rkurve = new SVGKurve();
+    rkurve2 = new SVGKurve2();
+    rtransformation = new SVGTransformation({id:"SVGTransformation",x:620,y:420});
+    ranimation = new SVGAnimation({id:"SVGAnimation",x:620,y:420});
+    rdiagramm = new SVGDiagramm();
+    
     //Register Buttons
-
-    
-
-    var button = document.getElementById("buttonanimation");
+    button = document.getElementById("buttonanimation");
     if(button.addEventListener){
              button.addEventListener("click", buttonActionanimation);
     } else {
@@ -944,7 +939,7 @@ window.onload = function () {
     }
 
 
-    var secondnav = document.getElementById("choose-figure");
+    secondnav = document.getElementById("choose-figure");
     if(secondnav.addEventListener){
              secondnav.addEventListener("click", secondNavAction);
     } else {
