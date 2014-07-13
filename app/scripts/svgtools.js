@@ -89,8 +89,8 @@ function SVGKreis(opts) {
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = Raphael(idname);
-        r.setViewBox(0,0,x,y,true);
-        r.setSize('100%', '100%');
+        r.setViewBox(0,0,x,y,false);
+        // r.setSize('100%', '50%');
     } 
 
     var nodes = r.canvas.childNodes; 
@@ -172,8 +172,8 @@ function SVGKreis(opts) {
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = Raphael(idname);
-        r.setViewBox(0,0,x,y,true);
-        r.setSize('100%', '100%');
+        r.setViewBox(0,0,x,y,false);
+        // r.setSize('100%', y);
     } 
 
    var nodes = r.canvas.childNodes; 
@@ -242,8 +242,8 @@ function SVGKreis(opts) {
 
  function SVGDiagramm() {
     var  r = Raphael("SVGDiagramm");
-    r.setViewBox(0,0,620,420,true);
-    r.setSize('100%', '100%');
+    r.setViewBox(0,0,620,420,false);
+    // r.setSize('100%', '80%');
 
     var     data = [   {x: 50, y: 250}, {x: 100, y: 100},{x: 150, y: 150},
                     {x: 200, y: 140}, {x: 250, y: 250},{x: 300, y: 200},
@@ -277,8 +277,8 @@ function SVGKreis(opts) {
     // var r = Raphael("SVGKurve", 620, 420),
 
     var r = Raphael("SVGKurve");
-        r.setViewBox(0,0,620,420,true);
-        r.setSize('100%', '100%');
+        r.setViewBox(0,0,620,420,false);
+        // r.setSize('100%', '80%');
 
 
     var discattr = {fill: "#fff", stroke: "none"};
@@ -362,8 +362,8 @@ function SVGKurve2(){
     // var r = Raphael("SVGKurve2", 620, 420),
 
     var r = Raphael("SVGKurve2");
-        r.setViewBox(0,0,620,420,true);
-        r.setSize('100%', '100%');
+        r.setViewBox(0,0,620,420,false);
+        // r.setSize('100%', '80%');
 
     var  discattr = {fill: "#fff", stroke: "none"};
     r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
@@ -505,8 +505,8 @@ function SVGTransformation(opts) {
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = Raphael(idname);
-        r.setViewBox(0,0,x,y,true);
-        r.setSize('100%', '100%');
+        r.setViewBox(0,0,x,y,false);
+        // r.setSize('100%', '80%');
     } 
    
    nodes = r.canvas.childNodes; 
@@ -660,8 +660,8 @@ function SVGAnimation(opts) {
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = Raphael(idname);
-        r.setViewBox(0,0,x,y,true);
-        r.setSize('100%', '100%');
+        r.setViewBox(0,0,x,y,false);
+        // r.setSize('100%', '80%');
     } 
    
    nodes = r.canvas.childNodes; 
