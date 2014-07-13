@@ -87,7 +87,10 @@ function SVGKreis(opts) {
         circles = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
-        r =  Raphael(idname, x, y);
+        // r =  Raphael(idname, x, y);
+        r = Raphael(idname);
+        r.setViewBox(0,0,x,y,true);
+        r.setSize('100%', '100%');
     } 
 
     var nodes = r.canvas.childNodes; 
@@ -167,7 +170,10 @@ function SVGKreis(opts) {
         path = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
-        r =  Raphael(idname, x, y);
+        // r =  Raphael(idname, x, y);
+        r = Raphael(idname);
+        r.setViewBox(0,0,x,y,true);
+        r.setSize('100%', '100%');
     } 
 
    var nodes = r.canvas.childNodes; 
@@ -235,14 +241,18 @@ function SVGKreis(opts) {
 // ---------------------------- Diagramm -------------------------
 
  function SVGDiagramm() {
-    var r = Raphael("SVGDiagramm", 620, 420),
-         data = [   {x: 50, y: 250}, {x: 100, y: 100},{x: 150, y: 150},
+    var  r = Raphael("SVGDiagramm");
+    r.setViewBox(0,0,620,420,true);
+    r.setSize('100%', '100%');
+
+    var     data = [   {x: 50, y: 250}, {x: 100, y: 100},{x: 150, y: 150},
                     {x: 200, y: 140}, {x: 250, y: 250},{x: 300, y: 200},
                     {x: 350, y: 180}, {x: 400, y: 230} ],
          curve = null,
          path = ['M', data[0].x, data[0].y, 'R'],
          whiteattr = {fill: "#fff", stroke: "none"},
          plottedPoints = r.set();
+
 
     r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
     for(var i = 0, num = data.length; i < num; i+=1) {
@@ -264,8 +274,14 @@ function SVGKreis(opts) {
 //----------------------------------- Kurve ----------------
 
  function SVGKurve(){
-    var r = Raphael("SVGKurve", 620, 420),
-        discattr = {fill: "#fff", stroke: "none"};
+    // var r = Raphael("SVGKurve", 620, 420),
+
+    var r = Raphael("SVGKurve");
+        r.setViewBox(0,0,620,420,true);
+        r.setSize('100%', '100%');
+
+
+    var discattr = {fill: "#fff", stroke: "none"};
     r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
     
     function curvef(x, y, ax, ay, bx, by, zx, zy, color) {
@@ -343,8 +359,13 @@ function SVGKreis(opts) {
 }
 //--------------- SVGKurve2 ----------------------------------
 function SVGKurve2(){
-    var r = Raphael("SVGKurve2", 620, 420),
-        discattr = {fill: "#fff", stroke: "none"};
+    // var r = Raphael("SVGKurve2", 620, 420),
+
+    var r = Raphael("SVGKurve2");
+        r.setViewBox(0,0,620,420,true);
+        r.setSize('100%', '100%');
+
+    var  discattr = {fill: "#fff", stroke: "none"};
     r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
     // r.text(310, 20, "Drag the points to change the curves").attr({fill: "#fff", "font-size": 16});
     
@@ -482,7 +503,10 @@ function SVGTransformation(opts) {
         objlist = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
-        r =  Raphael(idname, x, y);
+        // r =  Raphael(idname, x, y);
+        r = Raphael(idname);
+        r.setViewBox(0,0,x,y,true);
+        r.setSize('100%', '100%');
     } 
    
    nodes = r.canvas.childNodes; 
@@ -634,7 +658,10 @@ function SVGAnimation(opts) {
         objlist = [];
 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
-        r =  Raphael(idname, x, y);
+        // r =  Raphael(idname, x, y);
+        r = Raphael(idname);
+        r.setViewBox(0,0,x,y,true);
+        r.setSize('100%', '100%');
     } 
    
    nodes = r.canvas.childNodes; 
