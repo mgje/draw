@@ -77,7 +77,7 @@ SVGKreis = function(opts) {
         x = typeof(opts.x) === "number" ? opts.x : null,
         y = typeof(opts.y) === "number" ? opts.y : null,
         discattr = {fill: "none","stroke-width": 4,stroke: "hsb(.9, .75, .75)"},
-        discattr2 = {fill: "#fff", stroke: "none"},
+        discattr2 = {fill: "rgba(255, 255, 255,.5)", stroke: "none"},
         tmp = null,
         n_K = 20,
         r0 = -1,
@@ -103,7 +103,7 @@ SVGKreis = function(opts) {
     r.canvas.removeChild(nodes[2]);
    }
 
-    r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
 
     s_n_K = document.getElementById("choose-AnzKreise").getAttribute("data-kreise");    
     // n_K = Number.parseInt(s_n_K); 
@@ -138,13 +138,13 @@ SVGKreis = function(opts) {
         tmp = r.circle(x0,y0, r0).attr(discattr);
         tmp.node.removeAttributeNode(tmp.node.getAttributeNode("style"));
         circles.push(tmp);
-        cir = r.circle(x0, y0,5).attr(discattr2);
+        cir = r.circle(x0, y0,9).attr(discattr2);
         cir.idnum=i;
         list_cir.push(cir);
 
         cir.update = updatefunctioncenter;
 
-        cir = r.circle(x0, y0-r0,5).attr(discattr2);
+        cir = r.circle(x0, y0-r0,9).attr(discattr2);
         cir.idnum=i;
         list_r.push(cir);
         cir.update= updatefunctionradius;
@@ -168,7 +168,7 @@ SVGVielEck = function(opts) {
         x = typeof(opts.x) === "number" ? opts.x : null,
         y = typeof(opts.y) === "number" ? opts.y : null,
         data = [],
-        discattr = {fill: "#fff", stroke: "none"},
+        discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"},
         circles =[],
         curve = null,
         controls = null,
@@ -204,7 +204,7 @@ SVGVielEck = function(opts) {
    }
    
 
-   r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+   // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
 
    for(i = 0, num = data.length; i < num; i+=1) {
         if (i === 0) {
@@ -229,7 +229,7 @@ SVGVielEck = function(opts) {
         };
 
    for(i = 0, num = data.length; i < num; i+=1) {
-        var cir = r.circle(data[i].x, data[i].y, 5).attr(discattr);
+        var cir = r.circle(data[i].x, data[i].y, 9).attr(discattr);
         circles.push(cir);
         cir.idnum=i;
         cir.update=updatefunction; 
@@ -260,7 +260,7 @@ SVGDiagramm = function() {
          plottedPoints = r.set();
 
 
-    r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
     for(var i = 0, num = data.length; i < num; i+=1) {
        var point = data[i];
        plottedPoints.push(r.circle(point.x, point.y, 5));
@@ -287,8 +287,8 @@ SVGKurve = function(){
         // r.setSize('100%', '80%');
 
 
-    var discattr = {fill: "#fff", stroke: "none"};
-    r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+    var discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"};
+    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
     
     function curvef(x, y, ax, ay, bx, by, zx, zy, color) {
         var path = [["M", x, y], ["C", ax, ay, bx, by, zx, zy]],
@@ -296,10 +296,10 @@ SVGKurve = function(){
             curve = r.path(path).attr({stroke: color || Raphael.getColor(),"stroke-width": 4, "stroke-linecap": "round"}),            
             controls = r.set(
                 r.path(path2).attr({stroke: "#ccc", "stroke-dasharray": ". "}),
-                r.circle(x, y, 5).attr(discattr),
-                r.circle(ax, ay, 5).attr(discattr),
-                r.circle(bx, by, 5).attr(discattr),
-                r.circle(zx, zy, 5).attr(discattr)
+                r.circle(x, y, 9).attr(discattr),
+                r.circle(ax, ay, 9).attr(discattr),
+                r.circle(bx, by, 9).attr(discattr),
+                r.circle(zx, zy, 9).attr(discattr)
             );
         curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
         update_Kurve_SVG(r,curve.id,"SVGSourceKurve");
@@ -363,8 +363,8 @@ SVGKurve2 = function(){
         r.setViewBox(0,0,620,420,false);
         // r.setSize('100%', '80%');
 
-    var  discattr = {fill: "#fff", stroke: "none"};
-    r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+    var  discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"};
+    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
     // r.text(310, 20, "Drag the points to change the curves").attr({fill: "#fff", "font-size": 16});
     
 
@@ -374,13 +374,13 @@ SVGKurve2 = function(){
             curve = r.path(path).attr({stroke: color || Raphael.getColor(),"stroke-width": 4, "stroke-linecap": "round"}),      
             controls = r.set(
                 r.path(path2).attr({stroke: "#ccc", "stroke-dasharray": ". "}),
-                r.circle(x, y, 5).attr(discattr),
-                r.circle(ax, ay, 5).attr(discattr),
-                r.circle(bx, by, 5).attr(discattr),
-                r.circle(zx, zy, 5).attr(discattr),
-                r.circle(a2x, a2y, 5).attr(discattr),
-                r.circle(b2x, b2y, 5).attr(discattr),
-                r.circle(z2x, z2y, 5).attr(discattr)
+                r.circle(x, y, 9).attr(discattr),
+                r.circle(ax, ay, 9).attr(discattr),
+                r.circle(bx, by, 9).attr(discattr),
+                r.circle(zx, zy, 9).attr(discattr),
+                r.circle(a2x, a2y, 9).attr(discattr),
+                r.circle(b2x, b2y, 9).attr(discattr),
+                r.circle(z2x, z2y, 9).attr(discattr)
 
             );
         curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
@@ -511,7 +511,7 @@ SVGTransformation = function(opts) {
    while (nodes.length > 2){
     r.canvas.removeChild(nodes[2]);
    }
-   r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+   // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
    r.path([["M", 150, 360], ["L", 450, 360]]).attr({stroke: "#ccc", "stroke-dasharray": ". "});
    orig = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
    
@@ -666,7 +666,7 @@ SVGAnimation = function(opts) {
    while (nodes.length > 2){
     r.canvas.removeChild(nodes[2]);
    }
-   r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+   // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
    
    
    SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);

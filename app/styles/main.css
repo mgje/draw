@@ -140,6 +140,12 @@ button.menu img {
 
 /*MGU STUFF*/
 
+.canvas-wrapper{
+  background: black;
+
+}
+
+
 .experiment-layer{
     /*height: 768px;*/
     height: 1200px;
