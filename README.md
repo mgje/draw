@@ -68,9 +68,8 @@ Sie dürfen:
 **Bearbeiten** - das Material remixen, verändern und darauf aufbauen und zwar für beliebige Zwecke, sogar kommerziell.
 
 ## TODO
-- tests
-- make it responsive and mobile
-- reduce and compress
+- Browser Tests (Mobile, Win, Safari, Chrome, IE usw.)
+- Test von Bildschirmgrössen
 
 
 
