@@ -495,7 +495,7 @@ SVGTransformation = function(opts) {
         y0 = 110,
         dx = 166,
         dy = 205,
-        discattr = {fill: "#fff", stroke: "none"},
+        discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"},
         tmp = 0.0,
         objlist = [];
 
@@ -545,7 +545,7 @@ SVGTransformation = function(opts) {
                 }
 
         controls = r.set(
-                r.circle(tmp, 360, 5).attr(discattr)
+                r.circle(tmp, 360, 9).attr(discattr)
             );
 
         var transformation = document.getElementById("choose-transformation").getAttribute("transformation");
