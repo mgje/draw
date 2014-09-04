@@ -13,6 +13,9 @@ var rvieleck = null,
     button = null,
     secondnav = null,
 
+////--------Regex    
+    exprNL = new RegExp("\n","g"),
+
 //----------------------------
 // Helper Function
 move = function(fdx, fdy) {
@@ -24,7 +27,11 @@ move = function(fdx, fdy) {
 up = function() {
     this.dx = this.dy = 0;
 },
+// update syntax highlighting
+updateprettyprint = function(){
+    PR.prettyPrint();
 
+},
 
 // Create Elmente in with namespace bla bla
 createOn = function(el,name,attrs){
@@ -46,29 +53,41 @@ outerHTML = function(node){
       })(node);
 }, 
 update_Kurve_SVG = function(r,id,idelment){
-        var s = S('<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">').escapeHTML().s,
+        var s = '<svg height="420" version="1.1" width="620" xmlns="http://www.w3.org/2000/svg">',
             n = r.getById(id).node;
         //n.removeAttributeNode(n.getAttributeNode("style"));
-        s += S(outerHTML(n)).escapeHTML().s;
-        s += S('</svg>' ).escapeHTML().s;
+        s += S(outerHTML(n)).s;
+        s += '</svg>';
+        s = S(vkbeautify.xml(s)).escapeHTML().s;
+        s = s.replace(exprNL,'<br>');
         document.getElementById(idelment).innerHTML=s;
+
 },
 update_NodeList_SVG = function(nodelist,idelment){
-        var s = S('<svg height="420" width="620" xmlns="http://www.w3.org/2000/svg" version="1.1">').escapeHTML().s;
+        var s = '<svg height="420" width="620" xmlns="http://www.w3.org/2000/svg" version="1.1">';
         for(var i = 0, num = nodelist.length; i < num; i+=1) {
-            s += S(outerHTML(nodelist[i].node)).escapeHTML().s;
+            s += S(outerHTML(nodelist[i].node)).s;
         }
-        s += S('</svg>' ).escapeHTML().s;
+        s += '</svg>';
+        s = S(vkbeautify.xml(s)).escapeHTML().s;
+        s = s.replace(exprNL,'<br>');
         document.getElementById(idelment).innerHTML=s;
+
 }, 
 update_NodeList_SVG_xlink = function(nodelist,idelment){
-        var s = S('<svg height="420" width="620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">').escapeHTML().s;
+        var s = '<svg height="420" width="620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">';
         for(var i = 0, num = nodelist.length; i < num; i+=1) {
-            s += S(outerHTML(nodelist[i].node)).escapeHTML().s;
+            s += S(outerHTML(nodelist[i].node)).s;
         }
-        s += S('</svg>' ).escapeHTML().s;
+        s += '</svg>';
+        s = S(vkbeautify.xml(s)).escapeHTML().s;
+        s = s.replace(exprNL,'<br>');
         document.getElementById(idelment).innerHTML=s;
+
+        
 },     
+
+
 
 //------------------------------------ SVG Kreis ---------------------------------
 SVGKreis = function(opts) {
@@ -158,6 +177,7 @@ SVGKreis = function(opts) {
     controls.drag(move, up);
 
     update_NodeList_SVG(circles,"SVGSourceKreis");
+
     return (r); 
 
 },
@@ -826,6 +846,7 @@ secondNavAction=function(event){
     event.currentTarget.setAttribute("data-ecken",event.target.getAttribute("anz-ecken"));
     // SVGVielEck("SVGVieleck",620,420);
     rvieleck = new SVGVielEck({r:rvieleck});
+    
 },
 
 secondNavActionKreise=function(event){
@@ -841,6 +862,7 @@ secondNavActionKreise=function(event){
         event.target.className="selected";
         event.currentTarget.setAttribute("data-kreise",event.target.getAttribute("anz-kreis"));
         rkreise = new SVGKreis({r:rkreise});
+
     }
 },
 
@@ -860,6 +882,7 @@ secondNavActionTransformation=function(event){
         document.getElementById("message_trans").textContent=event.target.getAttribute("message");
 
         rtransformation = new SVGTransformation({r:rtransformation});
+        
     }
 },
 
@@ -874,6 +897,7 @@ secondNavActionAnimation=function(event){
     }
 
     ranimation = new SVGAnimation({r:ranimation});
+    
 };
 
 // Main Program start hier
@@ -885,6 +909,7 @@ secondNavActionAnimation=function(event){
     rtransformation = new SVGTransformation({id:"SVGTransformation",x:620,y:420});
     ranimation = new SVGAnimation({id:"SVGAnimation",x:620,y:420});
     rdiagramm = new SVGDiagramm();
+    
     
     //Register Buttons
     button = document.getElementById("buttonanimation");
@@ -966,5 +991,7 @@ secondNavActionAnimation=function(event){
     } else {
              secondnav.attachEvent("click", secondNavActionAnimation);
     }
+
+    updateprettyprint();
 
 };

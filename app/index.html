@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="styles/h5bp.css">
     <link rel="stylesheet" href="styles/components/components.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/prettify.css">
     <!-- endbuild -->
 
     </head>
@@ -114,11 +115,10 @@
                                 <li class="zentral"><b>Kreise</b></li>
                             </ul>
                         </nav>
-                        <code class="svg">
-                            <div class="highlight">
-                                <pre id="SVGSourceKreis" class="pre-wrap"></pre>
-                            </div>
-                        </code>
+                        <pre id="SVGSourceKreis" class="pre-wrap prettyprint"></pre>
+<!-- <pre class="pre-wrap prettyprint">
+&lt;svg height=&quot;420&quot; width=&quot;620&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot; &gt;&lt;circle cx=&quot;441&quot; cy=&quot;184&quot; r=&quot;77&quot; fill=&quot;none&quot; stroke=&quot;#4cbf2f&quot; stroke-width=&quot;4.912280701754386&quot;&gt;&lt;/circle&gt;&lt;circle cx=&quot;428&quot; cy=&quot;335&quot; r=&quot;74&quot; fill=&quot;none&quot; stroke=&quot;#bf5a2f&quot; stroke-width=&quot;4.912280701754386&quot;&gt;&lt;/circle&gt;&lt;circle cx=&quot;248&quot; cy=&quot;189&quot; r=&quot;93&quot; fill=&quot;none&quot; stroke=&quot;#bf852f&quot; stroke-width=&quot;4.912280701754386&quot;&gt;&lt;/circle&gt;&lt;/svg&gt;</pre>
+ -->
                         <a id="buttonkreis" href="#0" class="button--primary">Download</a>
                     </div>
                 </div>                     
@@ -148,9 +148,7 @@
                                 <li><a href="#Siebeneck" anz-ecken="7">Siebeneck</a></li>
                             </ul>
                         </nav>
-                        <code class="svg"><div class="highlight"><pre id="SVGSourceVieleck" class="pre-wrap">   
-                        
-                        </pre></div></code>
+                        <pre id="SVGSourceVieleck" class="pre-wrap prettyprint"></pre>
                         <a id="buttonvieleck" href="#0" class="button--primary">Download Vieleck</a>
                     </div>
                 </div>
@@ -170,9 +168,7 @@
                         </div>
                     </div>
                     <div class="g--half g--last g-small-1-colum"> 
-                        <code class="svg"><div class="highlight"><pre id="SVGSourceKurve" class="pre-wrap">   
-                        
-                        </pre></div></code>
+                        <pre id="SVGSourceKurve" class="pre-wrap prettyprint"></pre>
                         <a id="buttonkurve1" href="#0" class="button--primary">Download Kurve</a>
                     </div>
                 </div>
@@ -192,9 +188,7 @@
                         </div>
                     </div>
                     <div class="g--half g--last g-small-1-colum"> 
-                        <code class="svg"><div class="highlight"><pre id="SVGSourceKurve2" class="pre-wrap">   
-                        
-                        </pre></div></code>
+                        <pre id="SVGSourceKurve2" class="pre-wrap prettyprint"></pre>
                          <a id="buttonkurve2" href="#0" class="button--primary">Download Kurve</a>
                     </div>
                 </div>
@@ -227,9 +221,8 @@
                                 <li><a href="#Trans" matrix="m, 1, 0.13, 0, 1, 0, 0" message="Verzerren y-Richtung">V y</a></li>
                             </ul>
                         </nav>
-                        <code class="svg"><div class="highlight"><pre id="SVGSourceTransformation" class="pre-wrap">   
-                        
-                        </pre></div></code>
+                        <pre id="SVGSourceTransformation" class="pre-wrap prettyprint">   
+                        </pre>
                         <a id="buttontransformation" href="#0" class="button--primary">Download</a>
                     </div>
                 </div>
@@ -258,12 +251,10 @@
                                 <li><a id="ani_kleiner" href="#Anima">kleiner</a></li>
                                 <li><a id="ani_rot" href="#Anima">drehen</a></li>
                                 <li><a id="ani_pfad" href="#Anima">auf/ab</a></li>
-                                
                             </ul>
                         </nav>
-                        <code class="svg"><div class="highlight"><pre id="SVGSourceAnimation" class="pre-wrap">   
-                        
-                        </pre></div></code>
+                        <pre id="SVGSourceAnimation" class="pre-wrap prettyprint"></pre>
+
                         <a id="buttonanimation" href="#0" class="button--primary">Download</a>
                     </div>
                 </div>
@@ -327,9 +318,13 @@
         <!-- endbuild -->
         <script src="lib/raphael-min.js"></script>
         <script src="lib/string.min.js"></script>
+        <script src="lib/prettify.js"></script>
+        <script src="lib/vkbeautify.js"></script>
+        
         <!-- build:js scripts/svgtools.min.js -->
         <script src="scripts/svgtools.js"></script>
         <!-- endbuild -->     
+        
 
     </body>
 </html>
