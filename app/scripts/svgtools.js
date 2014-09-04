@@ -15,6 +15,7 @@ var rvieleck = null,
 
 ////--------Regex    
     exprNL = new RegExp("\n","g"),
+    exprNS1 = new RegExp("NS1:","g"),
 
 //----------------------------
 // Helper Function
@@ -82,6 +83,7 @@ update_NodeList_SVG_xlink = function(nodelist,idelment){
         s += '</svg>';
         s = S(vkbeautify.xml(s)).escapeHTML().s;
         s = s.replace(exprNL,'<br>');
+        s = s.replace(exprNS1,'xlink:');
         document.getElementById(idelment).innerHTML=s;
 
         
