@@ -190,7 +190,8 @@ SVGVielEck = function(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
         idname = typeof(opts.id) === "string" ? opts.id : null,
         x = typeof(opts.x) === "number" ? opts.x : null,
-        y = typeof(opts.y) === "number" ? opts.y : null,
+         y = typeof(opts.y) === "number" ? opts.y : null,
+        //y = window.innerWidth/2-100,
         data = [],
         discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"},
         circles =[],
@@ -203,7 +204,7 @@ SVGVielEck = function(opts) {
         // r =  Raphael(idname, x, y);
         r = new Raphael(idname);
         r.setViewBox(0,0,x,y,false);
-        // r.setSize('100%', y);
+        //r.setSize('100%', '100%');
     } 
 
    var nodes = r.canvas.childNodes; 
@@ -272,8 +273,8 @@ SVGVielEck = function(opts) {
 // ---------------------------- Diagramm -------------------------
 SVGDiagramm = function() {
     var  r = new Raphael("SVGDiagramm");
-    r.setViewBox(0,0,620,420,false);
-    // r.setSize('100%', '80%');
+    //r.setViewBox(0,0,620,420,false);
+     r.setSize('100%', '100%');
 
     var     data = [   {x: 50, y: 250}, {x: 100, y: 100},{x: 150, y: 150},
                     {x: 200, y: 140}, {x: 250, y: 250},{x: 300, y: 200},
@@ -686,6 +687,7 @@ SVGAnimation = function(opts) {
    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
    
    SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
+   SObj.node.removeAttributeNode(SObj.node.getAttributeNode("style"));
 
    dump = document.getElementById("ani_rechts").className;
    if (dump ==="selected"){  

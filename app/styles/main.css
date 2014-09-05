@@ -302,7 +302,7 @@ button.menu img {
 .second-navdrawer-container h4,
 .second-navdrawer-container ul li a {
     height: 60px;
-    padding: 0 20px;
+    padding: 0 12px;
     /*line-height: 60px;*/
 }
 
@@ -382,7 +382,7 @@ body {
     }
 
 /** Larger Screens - desktops and tablets **/
-@media all and (min-width: 990px) {
+@media all and (min-width: 1050px) {
   .app-bar {
     position: relative;
     display: none;

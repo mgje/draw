@@ -1,11 +1,11 @@
 /* GitHub Theme */
 .prettyprint {
-  background: white;
+  background: #DDDDDD;
   font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
-  border: 1px solid #ccc;
-  padding: 10px;
+  border: 0px solid #ccc;
+  padding: 8px;
 }
 
 .pln {
@@ -46,15 +46,15 @@
   }
 
   .tag {
-    color: navy;
+    color: #905;
   }
 
   .atn {
-    color: teal;
+    color: #056f00;
   }
 
   .atv {
-    color: #dd1144;
+    color: #3367D6;
   }
 
   .dec {
