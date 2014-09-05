@@ -12,6 +12,7 @@ var rvieleck = null,
     rdiagramm = null,
     button = null,
     secondnav = null,
+    tmpel = null,
 
 ////--------Regex    
     exprNL = new RegExp("\n","g"),
@@ -31,9 +32,7 @@ up = function() {
 // update syntax highlighting
 updateprettyprint = function(){
     PR.prettyPrint();
-
 },
-
 // Create Elmente in with namespace bla bla
 createOn = function(el,name,attrs){
     var e = document.createElementNS(el.namespaceURI,name);      
@@ -41,7 +40,6 @@ createOn = function(el,name,attrs){
     el.appendChild(e);
     return e;
 },
-
 outerHTML = function(node){
     // if IE, Chrome take the internal method otherwise build one
   return node.outerHTML || (
@@ -61,7 +59,10 @@ update_Kurve_SVG = function(r,id,idelment){
         s += '</svg>';
         s = S(vkbeautify.xml(s)).escapeHTML().s;
         s = s.replace(exprNL,'<br>');
-        document.getElementById(idelment).innerHTML=s;
+        tmpel = document.getElementById(idelment);
+        tmpel.innerHTML=s;
+        tmpel.className = "pre-wrap prettyprint";
+        updateprettyprint();
 
 },
 update_NodeList_SVG = function(nodelist,idelment){
@@ -72,7 +73,10 @@ update_NodeList_SVG = function(nodelist,idelment){
         s += '</svg>';
         s = S(vkbeautify.xml(s)).escapeHTML().s;
         s = s.replace(exprNL,'<br>');
-        document.getElementById(idelment).innerHTML=s;
+        tmpel = document.getElementById(idelment);
+        tmpel.innerHTML=s;
+        tmpel.className = "pre-wrap prettyprint";
+        updateprettyprint();
 
 }, 
 update_NodeList_SVG_xlink = function(nodelist,idelment){
@@ -84,13 +88,11 @@ update_NodeList_SVG_xlink = function(nodelist,idelment){
         s = S(vkbeautify.xml(s)).escapeHTML().s;
         s = s.replace(exprNL,'<br>');
         s = s.replace(exprNS1,'xlink:');
-        document.getElementById(idelment).innerHTML=s;
-
-        
+        tmpel = document.getElementById(idelment);
+        tmpel.innerHTML=s;
+        tmpel.className = "pre-wrap prettyprint";
+        updateprettyprint();
 },     
-
-
-
 //------------------------------------ SVG Kreis ---------------------------------
 SVGKreis = function(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
@@ -307,11 +309,8 @@ SVGKurve = function(){
     var r = new Raphael("SVGKurve");
         r.setViewBox(0,0,620,420,false);
         // r.setSize('100%', '80%');
-
-
     var discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"};
     // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
-    
     function curvef(x, y, ax, ay, bx, by, zx, zy, color) {
         var path = [["M", x, y], ["C", ax, ay, bx, by, zx, zy]],
             path2 = [["M", x, y], ["L", ax, ay], ["M", bx, by], ["L", zx, zy]],
@@ -388,8 +387,6 @@ SVGKurve2 = function(){
     var  discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"};
     // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
     // r.text(310, 20, "Drag the points to change the curves").attr({fill: "#fff", "font-size": 16});
-    
-
     function curvef(x, y, ax, ay, bx, by, zx, zy, a2x, a2y, b2x, b2y, z2x, z2y,color) {
         var path = [["M", x, y], ["C", ax, ay, bx, by, zx, zy, a2x, a2y, b2x, b2y, z2x, z2y]],
             path2 = [["M", x, y], ["L", ax, ay], ["M", bx, by], ["L", zx, zy], ["M", zx, zy], ["L", a2x, a2y], ["M", b2x, b2y], ["L", z2x, z2y]],
@@ -527,7 +524,6 @@ SVGTransformation = function(opts) {
         r.setViewBox(0,0,x,y,false);
         // r.setSize('100%', '80%');
     } 
-   
    nodes = r.canvas.childNodes; 
    // Alles Löschen bis auf die ersten beiden
    while (nodes.length > 2){
@@ -682,14 +678,12 @@ SVGAnimation = function(opts) {
         r.setViewBox(0,0,x,y,false);
         // r.setSize('100%', '80%');
     } 
-   
    nodes = r.canvas.childNodes; 
    // Alles Löschen bis auf die ersten beiden
    while (nodes.length > 2){
     r.canvas.removeChild(nodes[2]);
    }
    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
-   
    
    SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
 
@@ -994,6 +988,6 @@ secondNavActionAnimation=function(event){
              secondnav.attachEvent("click", secondNavActionAnimation);
     }
 
-    updateprettyprint();
+    
 
 };
