@@ -85,12 +85,12 @@ update_NodeList_SVG_xlink = function(nodelist,idelment){
             s += S(outerHTML(nodelist[i].node)).s;
         }
         s += '</svg>';
-        s = S(vkbeautify.xml(s)).escapeHTML().s;
+        s = S(vkbeautify.xml(s,false)).escapeHTML().s;
         s = s.replace(exprNL,'<br>');
         s = s.replace(exprNS1,'xlink:');
         tmpel = document.getElementById(idelment);
         tmpel.innerHTML=s;
-        tmpel.className = "pre-wrap prettyprint";
+        tmpel.className = "pre-wrap prettyprint lang-html";
         updateprettyprint();
 },     
 //------------------------------------ SVG Kreis ---------------------------------

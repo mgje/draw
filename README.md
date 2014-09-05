@@ -68,8 +68,9 @@ Sie dürfen:
 **Bearbeiten** - das Material remixen, verändern und darauf aufbauen und zwar für beliebige Zwecke, sogar kommerziell.
 
 ## TODO
-- Browser Tests (Mobile, Win, Safari, Chrome, IE usw.)
-- Test von Bildschirmgrössen
+- Second Navigation Schrift kleiner damit zwei Zeichen passen
+- SVG Canvas auf richtige grösse berechnen!
+- Logo einpassen
 
 
 
