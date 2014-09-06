@@ -3310,6 +3310,7 @@ object {
 .page--resources .primary-content p {
   margin-top: 0;
 }
+<<<<<<< HEAD
 
 /**
 *
@@ -3473,11 +3474,11 @@ object {
 }
 
 /*==========  TAG  ==========*/
-.tag {
+/*.tag {
   font-size: 13px;
-  line-height: 2.0000em;
+  line-height: 2.0000em;*/
   /* 26px */
-  padding-top: 2.0000em;
+/*  padding-top: 2.0000em;
   padding-bottom: 0;
   font-family: "Roboto Condensed", Helvetica, sans-serif;
   text-transform: uppercase;
@@ -3491,4 +3492,5 @@ object {
 .tag::before {
   content: "# ";
   display: inline-block;
-}
+}*/
+
