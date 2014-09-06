@@ -264,13 +264,20 @@ button.menu img {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+
+/*Gap between the widows*/
+.gap-column{
+  padding-left: 10px;
+}
+
 /*Nav Drawer second MGU*/
 
 .second-navdrawer-container {
     z-index: 1;
     position: relative;
-    top: 0;
-    display: block;
+    top: 8px;
+
+    /*display: block;*/
     
    /* bottom: 0;*/
    /* width: 250px;*/
@@ -282,7 +289,7 @@ button.menu img {
    /* -webkit-transform: translate(-250px, 0);
     transform: translate(-250px, 0);
     overflow-y: scroll;*/
-    display: none;
+    /*display: none;*/
 }
 
 .second-navdrawer-container.open {
@@ -307,15 +314,25 @@ button.menu img {
 }
 
 .second-navdrawer-container h4 {
-    background-color: white;
+   /* background-color: white;*/
     /*color: #3367D6;*/
-    color: #CF423A;
+    /*color: #CF423A;*/
+    display: none;
 }
 
 .second-navdrawer-container ul {
     padding: 0;
-    margin: 0;
-    list-style-type: none;
+    /*margin: 0;*/
+    /*list-style-type: none;*/
+
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 864px;
+    margin: 0 auto;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
 }
 
 .second-navdrawer-container ul li a {
@@ -328,7 +345,7 @@ button.menu img {
 
 .second-navdrawer-container ul li {
     border-bottom-style: solid;
-    border-width: 1px;
+    border-width: 0px;
     border-color: white;
     padding: 0;
     line-height: 60px;
@@ -382,7 +399,7 @@ body {
     }
 
 /** Larger Screens - desktops and tablets **/
-@media all and (min-width: 1050px) {
+@media all and (min-width: 990px) {
   .app-bar {
     position: relative;
     display: none;

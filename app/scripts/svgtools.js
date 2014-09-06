@@ -162,7 +162,7 @@ SVGKreis = function(opts) {
         r0 = Math.round(Math.random()*70)+30;
         discattr.stroke="hsb("+i*0.05+0.3+", .75, .75)";
         tmp = r.circle(x0,y0, r0).attr(discattr);
-        tmp.node.removeAttributeNode(tmp.node.getAttributeNode("style"));
+        tmp.node.removeAttribute("style");
         circles.push(tmp);
         cir = r.circle(x0, y0,9).attr(discattr2);
         cir.idnum=i;
@@ -271,7 +271,8 @@ SVGVielEck = function(opts) {
 
    controls.drag(move, up);
    
-   curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));         
+   // curve.node.removeAttributeNode(curve.node.getAttributeNode("style")); 
+   curve.node.removeAttribute("style");          
    update_Kurve_SVG(r,curve.id,"SVGSourceVieleck");
    return (r);     
  },
@@ -306,7 +307,7 @@ SVGDiagramm = function() {
        path.push(data[i].y);
    }
    curve = r.path( path ).attr({"stroke": "hsb(.6, .75, .75)", "stroke-width": 4, "stroke-linecap": "round"});
-   curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
+   curve.node.removeAttribute("style");
    
    update_Kurve_SVG(r,curve.id,"SVGSourceDiagramm");  
    return (r);  
@@ -334,7 +335,8 @@ SVGKurve = function(){
                 r.circle(bx, by, 9).attr(discattr),
                 r.circle(zx, zy, 9).attr(discattr)
             );
-        curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
+        // curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
+        curve.node.removeAttribute("style");  
         update_Kurve_SVG(r,curve.id,"SVGSourceKurve");
         controls[1].update = function (x, y) {
             var X = this.attr("cx") + x,
@@ -415,7 +417,8 @@ SVGKurve2 = function(){
                 r.circle(z2x, z2y, 9).attr(discattr)
 
             );
-        curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
+        // curve.node.removeAttributeNode(curve.node.getAttributeNode("style"));
+        curve.node.removeAttribute("style");
         update_Kurve_SVG(r,curve.id,"SVGSourceKurve2");
         controls[1].update = function (x, y) {
             var X = this.attr("cx") + x,
@@ -547,14 +550,17 @@ SVGTransformation = function(opts) {
    r.path([["M", 150, 360], ["L", 450, 360]]).attr({stroke: "#ccc", "stroke-dasharray": ". "});
    orig = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
    
-   orig.node.removeAttributeNode(orig.node.getAttributeNode("preserveAspectRatio"));
+   // orig.node.removeAttributeNode(orig.node.getAttributeNode("preserveAspectRatio"));
+   orig.node.removeAttribute("preserveAspectRatio");
    trans = document.getElementById("choose-transformation").getAttribute("transformation");
    objlist.push(orig);
 
    if (trans !== "n"){
         copy = orig.clone();
-        copy.node.removeAttributeNode(copy.node.getAttributeNode("style"));
-        copy.node.removeAttributeNode(copy.node.getAttributeNode("preserveAspectRatio"));
+        // copy.node.removeAttributeNode(copy.node.getAttributeNode("style"));
+        // copy.node.removeAttributeNode(copy.node.getAttributeNode("preserveAspectRatio"));
+        copy.node.removeAttribute("style");
+        copy.node.removeAttribute("preserveAspectRatio");
         copy.transform(trans);
         objlist.push(copy);
    
@@ -660,10 +666,8 @@ SVGTransformation = function(opts) {
         controls.drag(move, up);
     }    
 
-
-
-
-  orig.node.removeAttributeNode(orig.node.getAttributeNode("style"));
+  // orig.node.removeAttributeNode(orig.node.getAttributeNode("style"));
+  orig.node.removeAttribute("style");
   update_NodeList_SVG_xlink(objlist,"SVGSourceTransformation");
   return (r); 
 },
@@ -701,7 +705,8 @@ SVGAnimation = function(opts) {
    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
    
    SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
-   SObj.node.removeAttributeNode(SObj.node.getAttributeNode("style"));
+   // SObj.node.removeAttributeNode(SObj.node.getAttributeNode("style"));
+   SObj.node.removeAttribute("style");
 
    dump = document.getElementById("ani_rechts").className;
    if (dump ==="selected"){  
@@ -760,9 +765,9 @@ SVGAnimation = function(opts) {
 
    objlist.push(SObj);
 
-   tmp = SObj.node.getAttributeNode("style");
+   tmp = SObj.node.getAttribute("style");
    if (typeof(tmp)=== "string"){
-        SObj.node.removeAttributeNode(tmp);
+        SObj.node.removeAttribute("style");
     }
    update_NodeList_SVG_xlink(objlist,"SVGSourceAnimation");
    return (r); 
