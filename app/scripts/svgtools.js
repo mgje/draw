@@ -930,85 +930,103 @@ secondNavActionAnimation=function(event){
     
     //Register Buttons
     button = document.getElementById("buttonanimation");
-    if(button.addEventListener){
-             button.addEventListener("click", buttonActionanimation);
-    } else {
-             button.attachEvent("click", buttonActionanimation);
+    if (button !== null){
+        if(button.addEventListener){
+                 button.addEventListener("click", buttonActionanimation);
+        } else {
+                 button.attachEvent("click", buttonActionanimation);
+        }
     }
 
     button = document.getElementById("buttontransformation");
-    if(button.addEventListener){
-             button.addEventListener("click", buttonActiontransformation);
-    } else {
-             button.attachEvent("click", buttonActiontransformation);
+    if (button !== null){
+        if(button.addEventListener){
+                 button.addEventListener("click", buttonActiontransformation);
+        } else {
+                 button.attachEvent("click", buttonActiontransformation);
+        }
     }
 
-
     button = document.getElementById("buttonkreis");
-    if(button.addEventListener){
-             button.addEventListener("click", buttonActionkreis);
-    } else {
-             button.attachEvent("click", buttonActionkreis);
+    if (button !== null){
+        if(button.addEventListener){
+                 button.addEventListener("click", buttonActionkreis);
+        } else {
+                 button.attachEvent("click", buttonActionkreis);
+        }
     }
 
     button = document.getElementById("buttonvieleck");
-    if(button.addEventListener){
-             button.addEventListener("click", buttonActionvieleck);
-    } else {
-             button.attachEvent("click", buttonActionvieleck);
+    if (button !== null){
+        if(button.addEventListener){
+                 button.addEventListener("click", buttonActionvieleck);
+        } else {
+                 button.attachEvent("click", buttonActionvieleck);
+        }
     }
 
     button = document.getElementById("buttonkurve2");
-    if(button.addEventListener){
-             button.addEventListener("click", buttonActionkurve2);
-    } else {
-             button.attachEvent("click", buttonActionkurve2);
+    if (button !== null){
+        if(button.addEventListener){
+                 button.addEventListener("click", buttonActionkurve2);
+        } else {
+                 button.attachEvent("click", buttonActionkurve2);
+        }
     }
 
 
     button = document.getElementById("buttonkurve1");
-    if(button.addEventListener){
-             button.addEventListener("click", buttonActionkurve);
-    } else {
-             button.attachEvent("click", buttonActionkurve);
+    if (button !== null){
+        if(button.addEventListener){
+                 button.addEventListener("click", buttonActionkurve);
+        } else {
+                 button.attachEvent("click", buttonActionkurve);
+        }
     }
 
     button = document.getElementById("buttonvideo");
-    if(button.addEventListener){
-             button.addEventListener("click", buttonActionvideo);
-    } else {
-             button.attachEvent("click", buttonActionvideo);
+    if (button !== null){
+        if(button.addEventListener){
+                 button.addEventListener("click", buttonActionvideo);
+        } else {
+                 button.attachEvent("click", buttonActionvideo);
+        }
     }
 
-
     secondnav = document.getElementById("choose-figure");
-    if(secondnav.addEventListener){
-             secondnav.addEventListener("click", secondNavAction);
-    } else {
-             secondnav.attachEvent("click", secondNavAction);
+    if (secondnav !== null){
+        if(secondnav.addEventListener){
+                 secondnav.addEventListener("click", secondNavAction);
+        } else {
+                 secondnav.attachEvent("click", secondNavAction);
+        }
     }
 
     secondnav = document.getElementById("choose-AnzKreise");
-    if(secondnav.addEventListener){
-             secondnav.addEventListener("click", secondNavActionKreise);
-    } else {
-             secondnav.attachEvent("click", secondNavActionKreise);
+    if (secondnav !== null){
+        if(secondnav.addEventListener){
+                 secondnav.addEventListener("click", secondNavActionKreise);
+        } else {
+                 secondnav.attachEvent("click", secondNavActionKreise);
+        }
     }
 
     secondnav = document.getElementById("choose-transformation");
-    if(secondnav.addEventListener){
-             secondnav.addEventListener("click", secondNavActionTransformation);
-    } else {
-             secondnav.attachEvent("click", secondNavActionTransformation);
+    if (secondnav !== null){
+        if(secondnav.addEventListener){
+                 secondnav.addEventListener("click", secondNavActionTransformation);
+        } else {
+                 secondnav.attachEvent("click", secondNavActionTransformation);
+        }
     }
 
     secondnav = document.getElementById("choose-animation");
-    if(secondnav.addEventListener){
-             secondnav.addEventListener("click", secondNavActionAnimation);
-    } else {
-             secondnav.attachEvent("click", secondNavActionAnimation);
+    if (secondnav !== null){
+        if(secondnav.addEventListener){
+                 secondnav.addEventListener("click", secondNavActionAnimation);
+        } else {
+                 secondnav.attachEvent("click", secondNavActionAnimation);
+        }
     }
-
-    
 
 };

@@ -3,9 +3,11 @@
   background: #DDDDDD;
   font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.4;
   border: 0px solid #ccc;
-  padding: 8px;
+  padding-left: 8px;
+  padding-top: 6px;
+
 }
 
 .pln {
