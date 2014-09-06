@@ -3477,7 +3477,7 @@ object {
   font-size: 13px;
   line-height: 2.0000em;
   /* 26px */
-  /*padding-top: 2.0000em;*/
+  padding-top: 2.0000em;
   padding-bottom: 0;
   font-family: "Roboto Condensed", Helvetica, sans-serif;
   text-transform: uppercase;
@@ -3489,6 +3489,6 @@ object {
   color: #404040;
 }
 .tag::before {
-  /*content: "# ";*/
+  content: "# ";
   display: inline-block;
 }

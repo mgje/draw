@@ -113,6 +113,8 @@ SVGKreis = function(opts) {
         controls = null,
         circles = [];
 
+    // Nutze breite des Elements
+    x=document.getElementById("SVGKreis").offsetWidth;
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = new Raphael(idname);
@@ -153,8 +155,9 @@ SVGKreis = function(opts) {
             update_NodeList_SVG(circles,"SVGSourceKreis");
         };    
 
+    if (x === null) {x = 300;}
     for(var i = 0; i < n_K; i+=1) {
-        x0 = Math.round(Math.random()*300)+150;
+        x0 = Math.round(Math.random()*x)+70;
         y0 = Math.round(Math.random()*300)+70;
         r0 = Math.round(Math.random()*70)+30;
         discattr.stroke="hsb("+i*0.05+0.3+", .75, .75)";
@@ -199,6 +202,9 @@ SVGVielEck = function(opts) {
         num = 0,
         path = [];
 
+
+    // Nutze Breite des Elements
+    x=document.getElementById("SVGVieleck").offsetWidth;
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = new Raphael(idname);
@@ -272,6 +278,8 @@ SVGVielEck = function(opts) {
 // ---------------------------- Diagramm -------------------------
 SVGDiagramm = function() {
     var  r = new Raphael("SVGDiagramm");
+    // Nutze Breite des Elements
+    var x=document.getElementById("SVGDiagramm").offsetWidth;
     r.setViewBox(0,0,620,420,false);
     // r.setSize('100%', '80%');
 
@@ -307,7 +315,9 @@ SVGKurve = function(){
     // var r = Raphael("SVGKurve", 620, 420),
 
     var r = new Raphael("SVGKurve");
-        r.setViewBox(0,0,620,420,false);
+    // Nutze Breite des Elements
+    var x=document.getElementById("SVGKurve").offsetWidth;  
+    r.setViewBox(0,0,x,420,false);
         // r.setSize('100%', '80%');
     var discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"};
     // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
@@ -381,7 +391,8 @@ SVGKurve2 = function(){
     // var r = Raphael("SVGKurve2", 620, 420),
 
     var r = new Raphael("SVGKurve2");
-        r.setViewBox(0,0,620,420,false);
+    var x=document.getElementById("SVGKurve2").offsetWidth; 
+        r.setViewBox(0,0,x,420,false);
         // r.setSize('100%', '80%');
 
     var  discattr = {fill: "rgba(255, 255, 255,.5)", stroke: "none"};
@@ -518,6 +529,7 @@ SVGTransformation = function(opts) {
         tmp = 0.0,
         objlist = [];
 
+    x=document.getElementById("SVGTransformation").offsetWidth; 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = new Raphael(idname);
@@ -672,6 +684,7 @@ SVGAnimation = function(opts) {
         dump = "",
         objlist = [];
 
+    x=document.getElementById("SVGAnimation").offsetWidth; 
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = new Raphael(idname);
