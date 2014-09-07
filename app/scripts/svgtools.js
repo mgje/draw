@@ -10,6 +10,7 @@ var rvieleck = null,
     rkurve = null,
     rkurve2 = null,
     rdiagramm = null,
+    rlogo = null,
     button = null,
     secondnav = null,
     tmpel = null,
@@ -772,6 +773,119 @@ SVGAnimation = function(opts) {
    update_NodeList_SVG_xlink(objlist,"SVGSourceAnimation");
    return (r); 
 },
+/// --------------------- LOGO   -----------------------
+/// ----------------------------------------------------
+SVGLogo = function(opts) {
+    var r = typeof(opts.r) === "object" ? opts.r : null,
+        idname = typeof(opts.id) === "string" ? opts.id : null,
+        x = typeof(opts.x) === "number" ? opts.x : null,
+        y = typeof(opts.y) === "number" ? opts.y : null,
+        lSet = null,
+        nodes = null,
+        controls = null,
+        discattr = {fill: "#fff", stroke: "none"},
+        x0 = 70,
+        y0 = 130,
+        dx = 166,
+        dy = 205,
+        tmp = 0.0,
+        dump = "",
+        objlist = [];
+
+    x=document.getElementById("SVGLogo").offsetWidth; 
+    if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
+        // r =  Raphael(idname, x, y);
+        r = new Raphael(idname);
+        r.setViewBox(0,0,x,y,false);
+        // r.setSize('100%', '80%');
+    } 
+   nodes = r.canvas.childNodes; 
+   // Alles Löschen bis auf die ersten beiden
+   while (nodes.length > 2){
+    r.canvas.removeChild(nodes[2]);
+   }
+   // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
+   
+   var circle_c = r.circle(299, 422, 78).attr({fill: '#481300',parent: 'group_a','stroke-width': '0','stroke-opacity': '1'});
+   var path_f = r.path("M336.5,456.3c-7.6,0-13.9,6.3-13.9,13.9l0,20.5l27.8-20.2l0-0.4C350.4,462.5,344.2,456.3,336.5,456.3z").attr({fill: '#FFFFFF',parent: 'group_a','stroke-width': '0','stroke-opacity': '1'});
+
+
+   lSet = r.set();
+   lSet.push(circle_c);
+   lSet.push(path_f);
+
+   lSet.translate(-180,-300);
+
+   //SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
+   // SObj.node.removeAttributeNode(SObj.node.getAttributeNode("style"));
+   //SObj.node.removeAttribute("style");
+
+   // dump = document.getElementById("ani_rechts").className;
+   // if (dump ==="selected"){  
+   //     createOn(SObj.node,'animate',{
+   //        attributeType:'XML', begin:'click',
+   //        attributeName:'x', from: x0, to:'630',
+   //        dur:'1.3s', fill:'freeze'
+   //      });
+   //  }
+
+   //  dump = document.getElementById("ani_unten").className;
+   //  if (dump ==="selected"){ 
+   //     createOn(SObj.node,'animate',{
+   //        attributeType:'XML', begin:'click',
+   //        attributeName:'y', from: y0, to:'630',
+   //        dur:'2.3s', fill:'freeze'
+   //      });
+   //  }
+   //  dump = document.getElementById("ani_dicker").className;
+   //  if (dump ==="selected"){ 
+   //     createOn(SObj.node,'animate',{
+   //        attributeType:'XML', begin:'click',
+   //        attributeName:'width', from: dx, to:2.4*dx,
+   //        dur:'3.3s', fill:'freeze'
+   //      });
+   //  }
+
+   //  dump = document.getElementById("ani_kleiner").className;
+   //  if (dump ==="selected"){ 
+   //     createOn(SObj.node,'animate',{
+   //        attributeType:'XML', begin:'click',
+   //        attributeName:'height', from: dy, to:dy/3,
+   //        dur:'3.3s', fill:'freeze'
+   //      });
+   //  }
+
+   //  dump = document.getElementById("ani_rot").className;
+   //  if (dump ==="selected"){ 
+
+   //      createOn(SObj.node,'animateTransform',{
+   //         begin:'click', attributeType:'XML',
+   //        attributeName:'transform', type:'rotate', from: '0 153 232', to:'359.9 153 232',
+   //        repeatCount: 'indefinite',
+   //        additive: 'sum', dur:'3.3s', fill:'freeze'
+   //      });
+   //  }
+      
+   //  dump = document.getElementById("ani_pfad").className;
+   //  if (dump ==="selected"){ 
+   //       createOn(SObj.node,'animateMotion',{
+   //          path: 'm-50,0 q150,150, 260,0 q150,-240 260,0',
+   //          repeatCount: 'indefinite',
+   //         begin:'click', dur:'2.3s', fill:'freeze'
+   //      });
+   //  }
+
+   //objlist.push(SObj);
+
+   // tmp = SObj.node.getAttribute("style");
+   // if (typeof(tmp)=== "string"){
+   //      SObj.node.removeAttribute("style");
+   //  }
+   //update_NodeList_SVG_xlink(objlist,"SVGSourceLogo");
+   return (r); 
+},
+
+
 
 // ----------------------------------------------------------------------------
 // Callback Functions for Buttons
@@ -802,7 +916,6 @@ buttonActionkreis= function(event){
     var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     var newWindow=window.open(uriContent, 'kreis.svg');
 },
-
 
 buttonActionvieleck= function(event){
     if ( event.preventDefault ) { event.preventDefault();}  
@@ -926,6 +1039,7 @@ secondNavActionAnimation=function(event){
     rtransformation = new SVGTransformation({id:"SVGTransformation",x:620,y:420});
     ranimation = new SVGAnimation({id:"SVGAnimation",x:620,y:420});
     rdiagramm = new SVGDiagramm();
+    rlogo = new SVGLogo({id:"SVGLogo",x:620,y:420});
     
     
     //Register Buttons
