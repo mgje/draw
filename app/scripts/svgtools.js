@@ -549,7 +549,8 @@ SVGTransformation = function(opts) {
    }
    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
    r.path([["M", 150, 360], ["L", 450, 360]]).attr({stroke: "#ccc", "stroke-dasharray": ". "});
-   orig = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
+   orig = r.image("images/biber.png",x0,y0,dx,dy);
+   //orig = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
    
    // orig.node.removeAttributeNode(orig.node.getAttributeNode("preserveAspectRatio"));
    orig.node.removeAttribute("preserveAspectRatio");
@@ -705,7 +706,8 @@ SVGAnimation = function(opts) {
    }
    // r.rect(0, 0, 619, 419, 10).attr({fill: "#000",stroke: "#666"});
    
-   SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
+   SObj = r.image("images/biber.png",x0,y0,dx,dy);
+   //SObj = r.image("http://mgje.github.io/draw/images/biber.png",x0,y0,dx,dy);
    // SObj.node.removeAttributeNode(SObj.node.getAttributeNode("style"));
    SObj.node.removeAttribute("style");
 

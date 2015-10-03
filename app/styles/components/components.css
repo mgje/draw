@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
 *
 * Main Stylesheet For Visual Style Guide
@@ -1048,12 +1049,12 @@ div.highlight > pre > code .s, code .highlight .s {
 
 /* Literal.String */
 div.highlight > pre > code .na, code .highlight .na {
-  color: teal;
+  color: #008080;
 }
 
 /* Name.Attribute */
 div.highlight > pre > code .nb, code .highlight .nb {
-  color: #0086b3;
+  color: #0086B3;
 }
 
 /* Name.Builtin */
@@ -1063,12 +1064,12 @@ div.highlight > pre > code .nc, code .highlight .nc {
 
 /* Name.Class */
 div.highlight > pre > code .no, code .highlight .no {
-  color: teal;
+  color: #008080;
 }
 
 /* Name.Constant */
 div.highlight > pre > code .ni, code .highlight .ni {
-  color: purple;
+  color: #800080;
 }
 
 /* Name.Entity */
@@ -1093,7 +1094,7 @@ div.highlight > pre > code .nt, code .highlight .nt {
 
 /* Name.Tag */
 div.highlight > pre > code .nv, code .highlight .nv {
-  color: teal;
+  color: #008080;
 }
 
 /* Name.Variable */
@@ -1184,17 +1185,17 @@ div.highlight > pre > code .bp, code .highlight .bp {
 
 /* Name.Builtin.Pseudo */
 div.highlight > pre > code .vc, code .highlight .vc {
-  color: teal;
+  color: #008080;
 }
 
 /* Name.Variable.Class */
 div.highlight > pre > code .vg, code .highlight .vg {
-  color: teal;
+  color: #008080;
 }
 
 /* Name.Variable.Global */
 div.highlight > pre > code .vi, code .highlight .vi {
-  color: teal;
+  color: #008080;
 }
 
 /* Name.Variable.Instance */
@@ -1222,7 +1223,7 @@ div.highlight > pre > code .il, code .highlight .il {
     position: relative;
   }
   .editorial-header .container::before {
-    content: "\e003";
+    content: "";
     font-family: "icons";
     font-size: 1000px;
     line-height: 0;
@@ -1711,7 +1712,7 @@ div.highlight > pre > code .il, code .highlight .il {
   }
 }
 .did-you-know__symbol::after {
-  content: "\e014";
+  content: "";
   color: #3372df;
   font-family: "icons";
   font-size: 300px;
@@ -1839,7 +1840,7 @@ div.highlight > pre > code .il, code .highlight .il {
 }
 @media only screen and (min-width: 620px) {
   .next-lessons::after {
-    content: "\e00e";
+    content: "";
     font-family: "icons";
     font-size: 150px;
     right: 40px;
@@ -2232,18 +2233,18 @@ li > p {
 
 .button--primary {
   background: #4285f4;
-  color: white;
+  color: #ffffff;
   border: 1px solid #1266f1;
 }
 
 .button--secondary {
-  background: white;
+  background: #ffffff;
   color: #3372df;
   border: 1px solid #e6e6e6;
 }
 
 .button--secondary-variation {
-  background: white;
+  background: #ffffff;
   color: #3372df;
   border: 1px solid #e6e6e6;
   border-color: transparent;
@@ -2627,7 +2628,7 @@ a:hover {
   font-family: "icons";
   line-height: 25px;
   font-size: 13px;
-  content: "\e005";
+  content: "";
 }
 
 .cta--secondary {
