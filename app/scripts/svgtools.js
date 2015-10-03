@@ -677,22 +677,27 @@ SVGTransformation = function(opts) {
 /// ----------------------------------------------------
 SVGAnimation = function(opts) {
     var r = typeof(opts.r) === "object" ? opts.r : null,
-        idname = typeof(opts.id) === "string" ? opts.id : null,
-        x = typeof(opts.x) === "number" ? opts.x : null,
-        y = typeof(opts.y) === "number" ? opts.y : null,
-        SObj = null,
-        nodes = null,
-        controls = null,
-        discattr = {fill: "#fff", stroke: "none"},
-        x0 = 70,
-        y0 = 130,
-        dx = 166,
-        dy = 205,
-        tmp = 0.0,
-        dump = "",
-        objlist = [];
+    idname = typeof(opts.id) === "string" ? opts.id : null,
+    x = typeof(opts.x) === "number" ? opts.x : null,
+    y = typeof(opts.y) === "number" ? opts.y : null,
+    SObj = null,
+    nodes = null,
+    controls = null,
+    discattr = {fill: "#fff", stroke: "none"},
+    x0 = 70,
+    y0 = 130,
+    dx = 166,
+    dy = 205,
+    tmp = 0.0,
+    dump = "",
+    objlist = [];
 
-    x=document.getElementById("SVGAnimation").offsetWidth; 
+
+    x=null;
+    if (document.getElementById("SVGAnimation").offsetWidth !== null){
+        x = document.getElementById("SVGAnimation").offsetWidth; 
+    }
+    
     if (typeof(idname)==="string" && typeof(x)==="number" && typeof(y)==="number"){
         // r =  Raphael(idname, x, y);
         r = new Raphael(idname);
