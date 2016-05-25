@@ -3,7 +3,7 @@ draw - SVG interactive
 
 Interactive WebApp for  *[Informatik-Biber Lehrmittel (Schweiz)](http://informatik-biber.ch/lehrmittel/)*
 
-*[test or start](http://mgje.github.io/draw/)*
+*[test or start](https://mgje.github.io/draw/)*
 
 *[Download Link](https://github.com/mgje/draw/archive/gh-pages.zip)
 
@@ -43,11 +43,11 @@ $ gulp serve
 ## Related Projects
 
 - [Ready Set Raphael](http://www.readysetraphael.com/)
-- [Filter Effects for Raphael.js](http://chrismichaelscott.github.io/fraphael/)
+- [Filter Effects for Raphael.js](https://chrismichaelscott.github.io/fraphael/)
 
 ## About the project
 
-Die [WebApp](http://mgje.github.io/draw/) wurden für das Informatik-Biber Lehrmittel (Schweiz)
+Die [WebApp](https://mgje.github.io/draw/) wurden für das Informatik-Biber Lehrmittel (Schweiz)
 entwickelt. Finanziert wurde dieses Projekt durch ICT-Berufsbildung, die HaslerStiftung und SWITCH.
 
 Das [Lehrmittel zum Biber-Wettbewerb](http://informatik-biber.ch/lehrmittel/) ist ein vom [SVIA](http://svia-ssie-ssii.ch/), dem Schweizerischen Verein für Informatik in der Ausbildung, initiiertes Projekt und hat die Förderung der Informatik auf der Sekundarstufe I zum Ziel.
